@@ -233,17 +233,25 @@ const description = service.blurb;
         </a>
       </div>
       <div class="grid gap-5 sm:grid-cols-3">
-        {related.map((r) => {
+        {related.map((r, i) => {
           const RIcon = iconMap[r.icon];
           return (
-            <a href={`/leistungen/${r.slug}/`} class="card-service group">
-              <RIcon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
-              <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{r.title}</h3>
-              <p class="text-[13px] text-ink-500 leading-relaxed mb-4">{r.blurb}</p>
-              <span class="inline-flex items-center gap-1 text-[13px] font-medium text-krzred group-hover:gap-2 transition-all">
-                Mehr erfahren
-                <ArrowRight class="h-3.5 w-3.5" />
-              </span>
+            <a href={`/leistungen/${r.slug}/`} class="card-media group">
+              <div class="card-image-wrap">
+                <img src={r.image} alt={r.title} loading="lazy" decoding="async" width="640" height="400" />
+                <span class="badge-num absolute top-3 left-3">{String(i + 1).padStart(2, "0")}</span>
+                <span class="badge-icon absolute bottom-3 right-3">
+                  <RIcon class="h-5 w-5" strokeWidth={1.6} />
+                </span>
+              </div>
+              <div class="card-body">
+                <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{r.title}</h3>
+                <p class="text-[13px] text-ink-500 leading-relaxed mb-4 flex-1">{r.blurb}</p>
+                <span class="card-cta">
+                  Mehr erfahren
+                  <ArrowRight class="h-3.5 w-3.5" />
+                </span>
+              </div>
             </a>
           );
         })}

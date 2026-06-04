@@ -46,6 +46,7 @@ export default {
       fontFamily: {
         sans: ['"Work Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
         display: ['"Work Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
+        condensed: ['"Oswald"', '"Work Sans"', "ui-sans-serif", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.04em",

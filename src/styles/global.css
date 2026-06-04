@@ -594,12 +594,16 @@
   .top-pill {
     background: linear-gradient(90deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
     color: #ffffff;
-    padding: 0.6rem 0;
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    padding: 0.45rem 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
     border-bottom: 1px solid rgba(200, 16, 46, 0.4);
     position: relative;
     overflow: hidden;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .top-pill { padding: 0.55rem 0; font-size: 0.75rem; }
   }
   .top-pill::before {
     content: "";

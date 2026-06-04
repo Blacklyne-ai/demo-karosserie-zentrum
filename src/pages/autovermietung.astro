@@ -4,20 +4,20 @@ import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
 import {
   Car, Key, Calendar, ShieldCheck, Phone, MessageCircle, Check,
-  Clock, ArrowRight, ChevronRight, MapPin,
+  Clock, ArrowRight, ChevronRight, MapPin, BadgeCheck, ArrowUpRight, Star, Quote,
 } from "@lucide/astro";
 
 const benefits = [
-  { icon: Car, title: "Ersatzwagen während Reparatur", body: "Sie bleiben mobil, während Ihr Auto bei uns in der Werkstatt steht." },
-  { icon: Calendar, title: "Kurzfristig verfügbar", body: "Termin am gleichen Tag oder am Folgetag - ohne langen Vorlauf." },
-  { icon: ShieldCheck, title: "Versicherung übernimmt", body: "Bei vielen Unfallschäden zahlt die gegnerische Versicherung den Mietwagen." },
-  { icon: Key, title: "Übergabe vor Ort", body: "Schlüssel und Papiere direkt bei uns in Bornmoor 1." },
+  { icon: Car, n: "01", title: "Ersatzwagen während Reparatur", body: "Sie bleiben mobil, während Ihr Auto bei uns in der Werkstatt steht. Direkt am Standort übergeben." },
+  { icon: Calendar, n: "02", title: "Kurzfristig verfügbar", body: "Termin am gleichen Tag oder am Folgetag - ohne langen Vorlauf, ohne Mietwagen-Bürokratie." },
+  { icon: ShieldCheck, n: "03", title: "Versicherung übernimmt", body: "Bei vielen Unfallschäden zahlt die gegnerische Versicherung den Mietwagen vollständig." },
+  { icon: Key, n: "04", title: "Übergabe vor Ort", body: "Schlüssel und Papiere direkt bei uns in Bornmoor 1 - kein zweiter Stopp, keine Lauferei." },
 ];
 
 const fleet = [
-  { class: "Kleinwagen", body: "Sparsam und wendig - ideal für Stadtfahrten in Hamburg." },
-  { class: "Kompaktklasse", body: "Mehr Platz und mehr Komfort für die Familie." },
-  { class: "Transporter", body: "Falls Sie etwas Größeres transportieren müssen." },
+  { class: "Kleinwagen", body: "Sparsam und wendig - ideal für Stadtfahrten in Hamburg.", icon: Car },
+  { class: "Kompaktklasse", body: "Mehr Platz und mehr Komfort für die Familie.", icon: Car },
+  { class: "Transporter", body: "Falls Sie etwas Größeres transportieren müssen.", icon: Car },
 ];
 ---
 
@@ -25,25 +25,46 @@ const fleet = [
   title="Autovermietung Hamburg-Stellingen | KRZ"
   description="Ersatzwagen-Service während Karosserie-Reparatur in Hamburg-Stellingen. Kurzfristig verfügbar, Versicherungs-Abwicklung inklusive."
 >
-  <!-- HERO items-center -->
-  <section class="bg-white">
-    <div class="container-prose py-16 lg:py-24">
-      <nav aria-label="Brotkrumen" class="mb-10 flex items-center gap-1.5 text-xs text-ink-500">
+  <!-- HERO -->
+  <section class="bg-white relative overflow-hidden mesh-bg">
+    <div aria-hidden="true" class="absolute top-4 right-[4%] hidden lg:block pointer-events-none select-none">
+      <span class="big-num-light">02</span>
+    </div>
+    <div class="absolute inset-0 dot-pattern opacity-40 pointer-events-none"></div>
+
+    <div class="container-prose relative pt-10 pb-20 lg:pt-14 lg:pb-32">
+      <nav aria-label="Brotkrumen" class="mb-8 flex items-center gap-1.5 text-xs text-ink-500">
         <a href="/" class="hover:text-krzred">Willkommen</a>
         <ChevronRight class="h-3 w-3" />
-        <span class="text-ink">Autovermietung</span>
+        <span class="text-ink font-medium">Autovermietung</span>
       </nav>
+
+      <div class="flex flex-wrap items-center gap-2 mb-8">
+        <span class="chip-red">
+          <BadgeCheck class="h-3 w-3" />
+          Zweites Standbein
+        </span>
+        <span class="chip-light">
+          <MapPin class="h-3.5 w-3.5 text-krzred" />
+          Direkt am Standort
+        </span>
+        <span class="hidden sm:inline-flex chip-light">
+          <Calendar class="h-3.5 w-3.5 text-krzred" />
+          Kurzfristig verfügbar
+        </span>
+      </div>
 
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7">
-          <span class="eyebrow">Autovermietung</span>
-          <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance">
-            Ersatzwagen, wenn Ihr Auto in der Werkstatt steht.
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance leading-[1.05]">
+            Ersatzwagen,<br/>
+            wenn Ihr Auto<br/>
+            in der <span class="brush-underline">Werkstatt</span> steht.
           </h1>
-          <p class="mt-7 text-lg lg:text-xl text-ink-500 max-w-2xl leading-relaxed">
+          <p class="lead mt-7">
             Sie geben den Schlüssel ab und fahren mit einem unserer Mietwagen weiter. Ohne Drama, ohne Mietwagen-Lotterie, ohne lange Wartezeit.
           </p>
-          <div class="mt-10 flex flex-wrap gap-3">
+          <div class="mt-9 flex flex-wrap gap-3">
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <MessageCircle class="h-4 w-4" />
               WhatsApp schreiben
@@ -54,8 +75,9 @@ const fleet = [
             </a>
           </div>
         </div>
-        <div class="lg:col-span-5">
-          <div class="aspect-[4/5] overflow-hidden border border-paper-300 bg-paper-200">
+        <div class="lg:col-span-5 relative">
+          <div aria-hidden="true" class="absolute -top-4 -left-4 right-12 bottom-12 border border-krzred/30 rounded-2xl hidden md:block"></div>
+          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-paper-200 relative">
             <img
               src="/images/services/autovermietung.jpg"
               alt="KRZ Autovermietung - Ersatzwagen-Service"
@@ -65,6 +87,25 @@ const fleet = [
               loading="eager"
               decoding="async"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-transparent"></div>
+            <span class="tape-sticker top-6 -left-3">Mietwagen-Service</span>
+            <span class="absolute bottom-4 left-4 chip-dark backdrop-blur-md">
+              <Car class="h-3.5 w-3.5 text-krzred" />
+              Mietwagen direkt vor Ort
+            </span>
+          </div>
+          <div class="absolute -top-5 -right-5 hidden md:block stamp-glow z-10">
+            <div class="stamp-circle">
+              <span class="stamp-circle-num">02</span>
+              <span class="stamp-circle-label">Standbein</span>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 hidden sm:block floating-card-dark max-w-[18rem] z-10">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="top-pill-dot"></span>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500">Same-Day möglich</p>
+            </div>
+            <p class="text-base font-medium leading-snug">Ersatzwagen ab Werkstatt-Besuch</p>
           </div>
         </div>
       </div>
@@ -72,23 +113,34 @@ const fleet = [
   </section>
 
   <!-- BENEFITS GRID -->
-  <section class="section-white py-24 lg:py-32 border-y border-paper-300">
+  <section class="section-white py-24 lg:py-32 border-y border-paper-300 mesh-bg">
     <div class="container-prose">
-      <div class="max-w-3xl">
-        <span class="eyebrow">Warum bei uns</span>
+      <div class="max-w-3xl mb-14">
+        <span class="eyebrow-num">
+          <span class="eyebrow-num-marker">01</span>
+          Warum bei uns
+        </span>
         <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-          Was unsere Autovermietung anders macht.
+          Vier Gründe für<br/>unsere Vermietung.
         </h2>
-        <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+        <p class="lead mt-6">
           Direkt am Standort, kurzfristig verfügbar, mit Versicherungs-Abwicklung aus einer Hand.
         </p>
       </div>
-      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {benefits.map((b) => (
-          <div class="card-service">
-            <b.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+          <div class="group bg-white border border-paper-300 rounded-2xl p-7 transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_40px_-12px_rgba(15,15,15,0.12)] hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-5">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-krzred to-krzred-600 shadow-lg shadow-krzred/20">
+                <b.icon class="h-5 w-5 text-white" strokeWidth={1.6} />
+              </span>
+              <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-ink-500">{b.n}</span>
+            </div>
             <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{b.title}</h3>
             <p class="text-[13px] text-ink-500 leading-relaxed">{b.body}</p>
+            <div class="mt-5 pt-4 border-t border-paper-300">
+              <div class="h-px w-12 bg-gradient-to-r from-krzred to-transparent group-hover:w-20 transition-all duration-500"></div>
+            </div>
           </div>
         ))}
       </div>
@@ -96,26 +148,40 @@ const fleet = [
   </section>
 
   <!-- FLOTTE -->
-  <section class="section-paper py-24 lg:py-32">
+  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
         <div class="lg:col-span-5">
-          <span class="eyebrow">Fahrzeuge</span>
+          <span class="eyebrow-num">
+            <span class="eyebrow-num-marker">02</span>
+            Fahrzeuge
+          </span>
           <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-            Drei Klassen zur Auswahl.
+            Drei Klassen.<br/>Eine Werkstatt.
           </h2>
-          <p class="mt-5 text-lg text-ink-500 leading-relaxed">
-            Vom Kleinwagen bis zum Transporter - wir haben das passende Fahrzeug für Ihren Bedarf. Sprechen Sie uns an, wir finden was Passendes.
+          <p class="lead mt-6">
+            Vom Kleinwagen bis zum Transporter - wir haben das passende Fahrzeug für Ihren Bedarf.
           </p>
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary mt-8">
+            <MessageCircle class="h-4 w-4" />
+            Verfügbarkeit prüfen
+          </a>
         </div>
         <div class="lg:col-span-7 space-y-4">
           {fleet.map((f, i) => (
-            <div class="bg-white border border-paper-300 p-6 lg:p-7 flex items-start gap-5">
-              <span class="text-2xl font-bold text-krzred tracking-tighter w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-              <div>
+            <div class="group bg-white border border-paper-300 rounded-2xl p-6 lg:p-7 flex items-start gap-5 transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_40px_-12px_rgba(15,15,15,0.10)]">
+              <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
+                <f.icon class="h-6 w-6 text-krzred group-hover:text-white transition-colors" strokeWidth={1.5} />
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-1">
+                  <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">Klasse {String(i + 1).padStart(2, "0")}</span>
+                  <span class="text-[10px] text-ink-500">verfügbar</span>
+                </div>
                 <h3 class="text-lg font-semibold text-ink tracking-tight">{f.class}</h3>
                 <p class="mt-1.5 text-sm text-ink-500 leading-relaxed">{f.body}</p>
               </div>
+              <ArrowUpRight class="h-5 w-5 text-ink-500 group-hover:text-krzred group-hover:rotate-12 transition-all shrink-0" />
             </div>
           ))}
         </div>
@@ -123,60 +189,77 @@ const fleet = [
     </div>
   </section>
 
-  <!-- INFO STRIP DARK -->
-  <section class="section-dark py-20 lg:py-24">
-    <div class="container-prose">
-      <div class="grid gap-10 md:grid-cols-3 items-end">
-        <div>
-          <p class="text-5xl lg:text-6xl tracking-tighter font-bold text-white">1 Tag</p>
-          <p class="mt-3 text-sm text-ink-400 max-w-xs leading-relaxed">
+  <!-- STATS DARK -->
+  <section class="section-dark relative overflow-hidden py-20 lg:py-28 mesh-bg-dark">
+    <div class="absolute inset-0 dot-pattern-dark opacity-50 pointer-events-none"></div>
+    <div class="container-prose relative">
+      <div class="mb-12 max-w-2xl">
+        <span class="eyebrow-num">
+          <span class="eyebrow-num-marker">03</span>
+          In Kürze
+        </span>
+        <h2 class="mt-6 text-3xl sm:text-4xl tracking-tighter text-balance text-white">
+          Schnell. Direkt. Vor Ort.
+        </h2>
+      </div>
+      <div class="grid gap-10 md:grid-cols-3">
+        <div class="group">
+          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">01 - Verfügbarkeit</span>
+          <p class="stat-display mt-3 whitespace-nowrap">1 Tag</p>
+          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Kurzfristige Verfügbarkeit ohne lange Vorlaufzeit.
           </p>
+          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
         </div>
-        <div class="md:border-l md:border-ink-400/20 md:pl-10">
-          <p class="text-5xl lg:text-6xl tracking-tighter font-bold text-white">Vor Ort</p>
-          <p class="mt-3 text-sm text-ink-400 max-w-xs leading-relaxed">
+        <div class="group md:border-l md:border-white/10 md:pl-10">
+          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">02 - Übergabe</span>
+          <p class="stat-display mt-3 whitespace-nowrap">Vor Ort</p>
+          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Übergabe und Rückgabe direkt in Bornmoor 1.
           </p>
+          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
         </div>
-        <div class="md:border-l md:border-ink-400/20 md:pl-10">
-          <p class="text-5xl lg:text-6xl tracking-tighter font-bold text-white">Versich.</p>
-          <p class="mt-3 text-sm text-ink-400 max-w-xs leading-relaxed">
+        <div class="group md:border-l md:border-white/10 md:pl-10">
+          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">03 - Abwicklung</span>
+          <p class="stat-display mt-3 whitespace-nowrap">Versich.</p>
+          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Bei Unfallschäden zahlt oft die gegnerische Versicherung.
           </p>
+          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ABLAUF -->
-  <section class="section-light py-24 lg:py-32">
+  <section class="section-light py-24 lg:py-32 relative">
     <div class="container-prose">
-      <div class="max-w-3xl">
-        <span class="eyebrow">So einfach geht's</span>
+      <div class="max-w-3xl mb-14">
+        <span class="eyebrow-num">
+          <span class="eyebrow-num-marker">04</span>
+          So einfach
+        </span>
         <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-          Drei Schritte. Auto fertig.
+          Drei Schritte.<br/>Auto fertig.
         </h2>
       </div>
-      <div class="mt-14 grid gap-6 md:grid-cols-3">
-        <div class="card-number">
-          <span class="number-badge">01</span>
-          <Phone class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
-          <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">Anrufen oder WhatsApp</h3>
-          <p class="text-sm text-ink-500 leading-relaxed">Sie melden sich kurz. Wir prüfen Verfügbarkeit und Mietdauer und planen direkt einen Termin.</p>
-        </div>
-        <div class="card-number">
-          <span class="number-badge">02</span>
-          <Calendar class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
-          <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">Schlüssel-Übergabe</h3>
-          <p class="text-sm text-ink-500 leading-relaxed">Sie kommen vorbei - eigenes Auto abstellen, Mietwagen-Schlüssel mitnehmen.</p>
-        </div>
-        <div class="card-number">
-          <span class="number-badge">03</span>
-          <Check class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
-          <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">Wechsel zurück</h3>
-          <p class="text-sm text-ink-500 leading-relaxed">Wir rufen an, wenn Ihr Wagen fertig ist. Sie geben den Mietwagen zurück und holen Ihr eigenes Auto.</p>
-        </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          { icon: Phone, n: "01", t: "Anrufen oder WhatsApp", b: "Sie melden sich kurz. Wir prüfen Verfügbarkeit und Mietdauer und planen direkt einen Termin." },
+          { icon: Calendar, n: "02", t: "Schlüssel-Übergabe", b: "Sie kommen vorbei - eigenes Auto abstellen, Mietwagen-Schlüssel mitnehmen." },
+          { icon: Check, n: "03", t: "Wechsel zurück", b: "Wir rufen an, wenn Ihr Wagen fertig ist. Sie geben den Mietwagen zurück und holen Ihr Auto." },
+        ].map((p) => (
+          <div class="group bg-white border border-paper-300 rounded-2xl p-7 lg:p-8 transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_40px_-12px_rgba(15,15,15,0.12)] hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-6">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-krzred to-krzred-600 text-white font-condensed text-lg font-bold shadow-lg shadow-krzred/20">
+                {p.n}
+              </span>
+              <p.icon class="h-5 w-5 text-krzred" strokeWidth={1.5} />
+            </div>
+            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.t}</h3>
+            <p class="text-sm text-ink-500 leading-relaxed">{p.b}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>

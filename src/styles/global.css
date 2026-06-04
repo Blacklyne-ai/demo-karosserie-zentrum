@@ -1,8 +1,8 @@
-@import "@fontsource/work-sans/300.css";
-@import "@fontsource/work-sans/400.css";
-@import "@fontsource/work-sans/500.css";
-@import "@fontsource/work-sans/600.css";
-@import "@fontsource/work-sans/700.css";
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+@import "@fontsource/roboto/900.css";
 @import "@fontsource/oswald/500.css";
 @import "@fontsource/oswald/600.css";
 @import "@fontsource/oswald/700.css";
@@ -21,7 +21,7 @@
   body {
     background-color: #ffffff;
     color: #0f0f0f;
-    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     line-height: 1.55;
   }
@@ -30,11 +30,11 @@
   h3,
   h4,
   h5 {
-    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     color: #0f0f0f;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -0.015em;
+    line-height: 1.12;
   }
   ::selection {
     background-color: #c8102e;
@@ -90,61 +90,66 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: #c8102e;
+    gap: 0.55rem;
+    background: linear-gradient(135deg, #c8102e 0%, #a30d26 100%);
     color: #ffffff;
-    padding: 0.85rem 1.5rem;
+    padding: 0.95rem 1.65rem;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border-radius: 2px;
+    border-radius: 12px;
     transition: all 0.25s ease;
     border: 1px solid #c8102e;
+    box-shadow: 0 8px 22px -8px rgba(200, 16, 46, 0.45);
   }
   .btn-primary:hover {
-    background-color: #a30d26;
+    background: linear-gradient(135deg, #a30d26 0%, #7f0a1e 100%);
     border-color: #a30d26;
     transform: translateY(-1px);
+    box-shadow: 0 12px 28px -8px rgba(200, 16, 46, 0.55);
   }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     background-color: transparent;
     color: #0f0f0f;
-    padding: 0.85rem 1.5rem;
+    padding: 0.95rem 1.65rem;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border-radius: 2px;
+    border-radius: 12px;
     transition: all 0.25s ease;
-    border: 1px solid #0f0f0f;
+    border: 1px solid rgba(15, 15, 15, 0.2);
   }
   .btn-secondary:hover {
     background-color: #0f0f0f;
     color: #ffffff;
+    border-color: #0f0f0f;
     transform: translateY(-1px);
+    box-shadow: 0 12px 28px -8px rgba(15, 15, 15, 0.25);
   }
 
   .btn-on-dark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: #c8102e;
+    gap: 0.55rem;
+    background: linear-gradient(135deg, #c8102e 0%, #a30d26 100%);
     color: #ffffff;
-    padding: 0.85rem 1.5rem;
+    padding: 0.95rem 1.65rem;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border-radius: 2px;
+    border-radius: 12px;
     transition: all 0.25s ease;
     border: 1px solid #c8102e;
+    box-shadow: 0 12px 28px -8px rgba(200, 16, 46, 0.45);
   }
   .btn-on-dark:hover {
-    background-color: #a30d26;
+    background: linear-gradient(135deg, #a30d26 0%, #7f0a1e 100%);
     border-color: #a30d26;
     transform: translateY(-1px);
   }
@@ -153,19 +158,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: transparent;
+    gap: 0.55rem;
+    background-color: rgba(255, 255, 255, 0.04);
     color: #ffffff;
-    padding: 0.85rem 1.5rem;
+    padding: 0.95rem 1.65rem;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border-radius: 2px;
+    border-radius: 12px;
     transition: all 0.25s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
   .btn-on-dark-ghost:hover {
-    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-1px);
   }
 
@@ -174,6 +180,7 @@
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
     padding: 2rem 1.75rem;
+    border-radius: 16px;
     transition: all 0.3s ease;
     overflow: hidden;
   }
@@ -185,6 +192,7 @@
     right: 0;
     height: 3px;
     background-color: #c8102e;
+    border-radius: 16px 16px 0 0;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
@@ -192,7 +200,7 @@
   .card-service:hover {
     transform: translateY(-4px);
     border-color: #c8102e;
-    box-shadow: 0 12px 30px -8px rgba(15, 15, 15, 0.12);
+    box-shadow: 0 18px 40px -12px rgba(15, 15, 15, 0.14);
   }
   .card-service:hover::before {
     transform: scaleX(1);
@@ -203,17 +211,18 @@
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
     padding: 2.5rem 2rem 2rem;
+    border-radius: 16px;
     transition: all 0.3s ease;
   }
   .card-number:hover {
     transform: translateY(-4px);
     border-color: #c8102e;
-    box-shadow: 0 12px 30px -8px rgba(15, 15, 15, 0.12);
+    box-shadow: 0 18px 40px -12px rgba(15, 15, 15, 0.14);
   }
 
   .number-badge {
     display: inline-block;
-    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -231,7 +240,7 @@
     display: inline-flex;
     align-items: center;
     gap: 4rem;
-    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
     letter-spacing: 0.18em;
@@ -274,7 +283,7 @@
   }
 
   .stat-display {
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-weight: 700;
     font-size: clamp(3.5rem, 8vw, 6rem);
     line-height: 0.95;
@@ -284,7 +293,7 @@
   .section-dark .stat-display { color: #ffffff; }
 
   .badge-num {
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.92);
@@ -314,6 +323,7 @@
     position: relative;
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
+    border-radius: 16px;
     transition: all 0.3s ease;
     overflow: hidden;
     display: flex;
@@ -380,7 +390,7 @@
     border: 3px solid #ffffff;
   }
   .stamp-circle-num {
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -398,14 +408,14 @@
     background: rgba(255, 254, 251, 0.97);
     backdrop-filter: blur(14px);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 6px;
+    border-radius: 14px;
     padding: 1rem 1.15rem;
     box-shadow: 0 22px 48px -14px rgba(0, 0, 0, 0.22);
   }
   .floating-card-dark {
     background: #0f0f0f;
     color: #ffffff;
-    border-radius: 6px;
+    border-radius: 14px;
     padding: 1rem 1.15rem;
     box-shadow: 0 22px 48px -14px rgba(15, 15, 15, 0.42);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -414,7 +424,7 @@
     background: rgba(255, 254, 251, 0.96);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
+    border-radius: 16px;
     padding: 1.15rem 1.35rem;
     box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.22);
   }
@@ -483,7 +493,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.7rem;
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -492,11 +502,12 @@
   }
   .eyebrow-num-marker {
     display: inline-block;
-    padding: 0.18rem 0.45rem;
-    border-radius: 4px;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
     background: #c8102e;
     color: #ffffff;
     font-size: 0.62rem;
+    box-shadow: 0 4px 10px -2px rgba(200, 16, 46, 0.4);
   }
 
   /* Decorative background pattern (subtle dot grid) */
@@ -539,6 +550,7 @@
     aspect-ratio: 4/5;
     overflow: hidden;
     background: #f4f4f4;
+    border-radius: 18px;
   }
   .showcase-card img {
     width: 100%;
@@ -652,7 +664,7 @@
 
   /* ═══ NUMBERED BIG BADGE on dark sections ═══ */
   .big-num {
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-weight: 700;
     font-size: clamp(7rem, 14vw, 12rem);
     line-height: 0.85;
@@ -664,7 +676,7 @@
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
   }
   .big-num-light {
-    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
     font-weight: 700;
     font-size: clamp(7rem, 14vw, 12rem);
     line-height: 0.85;
@@ -702,16 +714,18 @@
   /* ═══ Tape / scotch sticker for showcase ═══ */
   .tape-sticker {
     position: absolute;
-    background: rgba(200, 16, 46, 0.85);
+    background: rgba(200, 16, 46, 0.92);
     color: #ffffff;
-    font-family: "Oswald", "Work Sans", sans-serif;
+    font-family: "Oswald", "Roboto", sans-serif;
     font-weight: 600;
     font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 0.45rem 1.5rem;
+    padding: 0.45rem 1.4rem;
+    border-radius: 4px;
     transform: rotate(-3deg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    z-index: 5;
   }
 
   /* ═══ Header dot for nav state ═══ */

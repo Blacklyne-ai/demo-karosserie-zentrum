@@ -61,8 +61,8 @@ const description = service.blurb;
             </a>
           </div>
         </div>
-        <div class="lg:col-span-5">
-          <div class="aspect-[4/5] overflow-hidden border border-paper-300 bg-paper-200">
+        <div class="lg:col-span-5 relative">
+          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-paper-200 relative">
             <img
               src={service.image}
               alt={`${service.title} - KRZ Hamburg-Stellingen`}
@@ -72,6 +72,18 @@ const description = service.blurb;
               loading="eager"
               decoding="async"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/50 via-transparent to-transparent"></div>
+            <span class="absolute bottom-4 left-4 chip-dark backdrop-blur-md">
+              <Icon class="h-3.5 w-3.5 text-krzred" />
+              {service.title}
+            </span>
+          </div>
+          <!-- Floating Stamp -->
+          <div class="absolute -top-5 -right-5 hidden md:block stamp-glow z-10">
+            <div class="stamp-circle">
+              <span class="stamp-circle-num">KRZ</span>
+              <span class="stamp-circle-label">Original</span>
+            </div>
           </div>
         </div>
       </div>
@@ -79,28 +91,43 @@ const description = service.blurb;
   </section>
 
   <!-- WAS WIR MACHEN (Text + Image Side-by-Side) -->
-  <section class="section-white py-24 lg:py-32 border-y border-paper-300">
+  <section class="section-white py-24 lg:py-32 border-y border-paper-300 mesh-bg">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
         <div class="lg:col-span-5">
-          <span class="eyebrow">Was wir machen</span>
+          <span class="eyebrow-num">
+            <span class="eyebrow-num-marker">01</span>
+            Was wir machen
+          </span>
           <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
             Im Detail.
           </h2>
-          <p class="mt-5 text-base text-ink-500 leading-relaxed">
+          <p class="lead mt-6 !text-base lg:!text-lg">
             Diese Punkte sind Teil unserer Arbeit für Sie - sauber dokumentiert, mit Werkstattprotokoll und Garantie auf die ausgeführten Arbeiten.
           </p>
-          <div class="mt-9">
-            <Icon class="h-9 w-9 text-krzred" strokeWidth={1.5} />
-            <p class="mt-4 text-sm text-ink-500 uppercase tracking-[0.16em] font-medium">{service.title}</p>
+          <div class="mt-10 inline-flex items-center gap-4 p-5 rounded-2xl border border-paper-300 bg-paper-100">
+            <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-krzred to-krzred-600 shadow-lg shadow-krzred/20">
+              <Icon class="h-7 w-7 text-white" strokeWidth={1.6} />
+            </span>
+            <div>
+              <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500 font-medium">Leistung</p>
+              <p class="text-base font-semibold text-ink mt-0.5">{service.title}</p>
+            </div>
           </div>
         </div>
         <div class="lg:col-span-7">
           <div class="grid gap-4 sm:grid-cols-2">
-            {service.bullets.map((b) => (
-              <div class="bg-white border border-paper-300 p-5 flex items-start gap-3">
-                <Check class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
-                <span class="text-sm text-ink leading-relaxed">{b}</span>
+            {service.bullets.map((b, i) => (
+              <div class="group bg-white border border-paper-300 p-6 rounded-2xl flex items-start gap-4 transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_36px_-12px_rgba(15,15,15,0.10)] hover:-translate-y-1">
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
+                  <Check class="h-4 w-4 text-krzred group-hover:text-white transition-colors" strokeWidth={2.5} />
+                </span>
+                <div class="flex-1">
+                  <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">
+                    Detail {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p class="mt-1 text-[15px] text-ink leading-relaxed">{b}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -158,7 +185,7 @@ const description = service.blurb;
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7 relative">
-          <div class="aspect-[5/4] overflow-hidden border border-paper-300">
+          <div class="aspect-[5/4] overflow-hidden rounded-2xl border border-paper-300">
             <img
               src={service.image}
               alt={`Werkstattbild ${service.title}`}

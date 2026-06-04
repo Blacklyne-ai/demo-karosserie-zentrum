@@ -188,7 +188,7 @@ const testimonials = [
           <div aria-hidden="true" class="absolute top-12 left-12 -right-4 -bottom-4 stripe-banner hidden md:block"></div>
 
           <!-- Main Hero Image -->
-          <div class="aspect-[4/5] w-full overflow-hidden bg-paper-200 relative">
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-paper-200 relative">
             <img
               src="/images/services/karosseriearbeiten.jpg"
               alt="Karosserieinstandsetzung in der KRZ Werkstatt Hamburg-Stellingen"
@@ -283,32 +283,34 @@ const testimonials = [
       <span class="big-num">KRZ</span>
     </div>
     <div class="container-prose relative">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
-        <div class="max-w-2xl">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">02</span>
-            KRZ in Zahlen
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance text-white">
-            Ein Standort. Zehn Leistungen.<br/>
-            Sechs Tage die Woche.
-          </h2>
-        </div>
-        <div class="flex flex-col gap-3">
-          <span class="chip-dark self-start lg:self-end">
+      <div class="max-w-3xl mb-16">
+        <span class="eyebrow-num">
+          <span class="eyebrow-num-marker">02</span>
+          KRZ in Zahlen
+        </span>
+        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance text-white">
+          Ein Standort. Zehn Leistungen.<br/>
+          Sechs Tage die Woche.
+        </h2>
+        <div class="mt-8 flex flex-wrap gap-2.5">
+          <span class="chip-dark">
             <BadgeCheck class="h-3.5 w-3.5 text-krzred" />
             Hamburg-Stellingen
           </span>
-          <span class="chip-dark self-start lg:self-end">
+          <span class="chip-dark">
             <ShieldCheck class="h-3.5 w-3.5 text-krzred" />
             Versicherungs-Partner
+          </span>
+          <span class="chip-dark">
+            <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
+            4.9 / 5 lokal
           </span>
         </div>
       </div>
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div class="relative group">
           <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">01 - Leistungen</span>
-          <p class="stat-display mt-3">10</p>
+          <p class="stat-display mt-3 whitespace-nowrap">10</p>
           <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Karosserie-Leistungen - vom Kratzer bis zur kompletten Restaurierung.
           </p>
@@ -316,7 +318,7 @@ const testimonials = [
         </div>
         <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
           <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">02 - Aus einer Hand</span>
-          <p class="stat-display mt-3">1 Haus</p>
+          <p class="stat-display mt-3 whitespace-nowrap">1 Haus</p>
           <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Smart-Repair, Lackiererei und Karosserie in einer Werkstatt.
           </p>
@@ -324,7 +326,7 @@ const testimonials = [
         </div>
         <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
           <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">03 - Erreichbar</span>
-          <p class="stat-display mt-3">Mo - Sa</p>
+          <p class="stat-display mt-3 whitespace-nowrap">Mo&nbsp;-&nbsp;Sa</p>
           <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Sechs Tage erreichbar, Mobilnummer auch außerhalb.
           </p>
@@ -332,7 +334,7 @@ const testimonials = [
         </div>
         <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
           <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">04 - Standort</span>
-          <p class="stat-display mt-3">HH</p>
+          <p class="stat-display mt-3 whitespace-nowrap">HH</p>
           <p class="mt-4 text-sm text-steel-500 leading-relaxed">
             Hamburg-Stellingen - Autohof Stellingen, Bornmoor 1.
           </p>
@@ -365,7 +367,7 @@ const testimonials = [
       <div class="grid gap-6 md:grid-cols-3">
         {drei.map((d) => (
           <article class="group relative bg-white border border-paper-300 overflow-hidden transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_36px_-10px_rgba(15,15,15,0.15)] hover:-translate-y-1">
-            <div class="relative aspect-[5/3] overflow-hidden">
+            <div class="relative aspect-[5/3] overflow-hidden rounded-t-2xl">
               <img
                 src={d.image}
                 alt={d.title}
@@ -494,7 +496,7 @@ const testimonials = [
         </div>
 
         <div class="lg:col-span-7 relative">
-          <div class="aspect-[5/4] overflow-hidden">
+          <div class="aspect-[5/4] overflow-hidden rounded-2xl">
             <img
               src="/images/services/schadenmanagement.jpg"
               alt="Schaden- und Versicherungsmanagement bei KRZ"
@@ -627,7 +629,7 @@ const testimonials = [
     <div class="container-prose relative">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-5 relative">
-          <div class="aspect-[4/5] overflow-hidden bg-anthracite-700 border border-white/10">
+          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-anthracite-700 border border-white/10">
             <img
               src="/images/services/oldtimer-restaurierung.jpg"
               alt="Werkstatt KRZ Hamburg-Stellingen"
@@ -687,7 +689,7 @@ const testimonials = [
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
         <div class="lg:col-span-5 lg:order-2 relative">
-          <div class="aspect-[5/4] overflow-hidden">
+          <div class="aspect-[5/4] overflow-hidden rounded-2xl">
             <img
               src="/images/services/autovermietung.jpg"
               alt="Autovermietung als Ersatzwagen-Service"
@@ -865,7 +867,7 @@ const testimonials = [
         </div>
 
         <div class="lg:col-span-7 relative">
-          <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden bg-paper-200">
+          <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden rounded-2xl bg-paper-200">
             <iframe
               src={site.mapsEmbed}
               width="100%"

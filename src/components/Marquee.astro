@@ -1,0 +1,24 @@
+---
+const items = [
+  "KAROSSERIE",
+  "STELLINGEN",
+  "LACKIERUNG",
+  "SMART-REPAIR",
+  "RICHTBANK",
+  "OLDTIMER",
+  "FOLIERUNG",
+  "UNFALLSERVICE",
+  "SCHADENMANAGEMENT",
+  "ACHSVERMESSUNG",
+  "BELEUCHTUNG",
+];
+const row = items.join("  ◆  ");
+---
+
+<section class="section-cream py-10 lg:py-12 overflow-hidden border-y border-cream-300">
+  <div class="marquee-row" aria-hidden="true">
+    <span>{row}  ◆  </span>
+    <span>{row}  ◆  </span>
+  </div>
+  <p class="sr-only">{items.join(", ")}</p>
+</section>

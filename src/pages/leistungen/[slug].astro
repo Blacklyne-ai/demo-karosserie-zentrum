@@ -1,0 +1,259 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { services, site } from "../../data/site";
+import {
+  Hammer, Paintbrush2, Sparkles, Wrench, Award, PaintBucket,
+  Target, Lightbulb, AlertTriangle, FileCheck,
+  ArrowRight, Check, MessageCircle, Phone, MapPin, Clock, Mail, ChevronRight,
+} from "@lucide/astro";
+
+export async function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props as { service: typeof services[number] };
+
+const iconMap: Record<string, any> = {
+  Hammer, Paintbrush2, Sparkles, Wrench, Award, PaintBucket, Target,
+  Lightbulb, AlertTriangle, FileCheck,
+};
+const Icon = iconMap[service.icon];
+
+const related = services
+  .filter((s) => s.slug !== service.slug)
+  .sort(() => 0)
+  .slice(0, 3);
+
+const title = `${service.title} | KRZ Karosserie-Fachbetrieb Hamburg-Stellingen`;
+const description = service.blurb;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- HERO items-center -->
+  <section class="bg-cream relative overflow-hidden">
+    <div class="container-prose py-16 lg:py-24">
+      <nav aria-label="Brotkrumen" class="mb-10 flex items-center gap-1.5 text-xs text-ink-500">
+        <a href="/" class="hover:text-krzred">Willkommen</a>
+        <ChevronRight class="h-3 w-3" />
+        <a href="/#leistungen" class="hover:text-krzred">Leistungen</a>
+        <ChevronRight class="h-3 w-3" />
+        <span class="text-ink">{service.title}</span>
+      </nav>
+
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7">
+          <span class="eyebrow">Leistung · {service.title}</span>
+          <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance">
+            {service.hero}
+          </h1>
+          <p class="mt-7 text-lg lg:text-xl text-ink-500 max-w-2xl leading-relaxed">
+            {service.intro}
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <MessageCircle class="h-4 w-4" />
+              WhatsApp schreiben
+            </a>
+            <a href={site.phone.mainTel} class="btn-secondary">
+              <Phone class="h-4 w-4" />
+              {site.phone.main}
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="aspect-[4/5] overflow-hidden border border-cream-300 bg-cream-200">
+            <img
+              src={service.image}
+              alt={`${service.title} - KRZ Hamburg-Stellingen`}
+              width="800"
+              height="1000"
+              class="h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAS WIR MACHEN (Text + Image Side-by-Side) -->
+  <section class="section-white py-24 lg:py-32 border-y border-cream-300">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
+        <div class="lg:col-span-5">
+          <span class="eyebrow">Was wir machen</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+            Im Detail.
+          </h2>
+          <p class="mt-5 text-base text-ink-500 leading-relaxed">
+            Diese Punkte sind Teil unserer Arbeit für Sie - sauber dokumentiert, mit Werkstattprotokoll und Garantie auf die ausgeführten Arbeiten.
+          </p>
+          <div class="mt-9">
+            <Icon class="h-9 w-9 text-krzred" strokeWidth={1.5} />
+            <p class="mt-4 text-sm text-ink-500 uppercase tracking-[0.16em] font-medium">{service.title}</p>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="grid gap-4 sm:grid-cols-2">
+            {service.bullets.map((b) => (
+              <div class="bg-cream border border-cream-300 p-5 flex items-start gap-3">
+                <Check class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+                <span class="text-sm text-ink leading-relaxed">{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS - 3 Schritte -->
+  <section class="section-cream py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Ablauf</span>
+        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          Wie der Prozess läuft.
+        </h2>
+        <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+          Klar, vorhersehbar, ohne Überraschungen. Drei Schritte vom Erstkontakt bis zur Übergabe.
+        </p>
+      </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {service.process.map((p, i) => (
+          <div class="card-number">
+            <span class="number-badge">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.title}</h3>
+            <p class="text-sm text-ink-500 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS / NUMBERS -->
+  {service.stats && (
+    <section class="section-dark py-20 lg:py-24">
+      <div class="container-prose">
+        <div class="grid gap-10 md:grid-cols-3 items-end">
+          {service.stats.map((s, i) => (
+            <div class={i > 0 ? "md:border-l md:border-ink-400/20 md:pl-10" : ""}>
+              <p class="text-5xl lg:text-6xl tracking-tighter font-bold text-cream">
+                {s.value}
+              </p>
+              <p class="mt-3 text-sm text-ink-400 leading-relaxed max-w-xs">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- IMAGE-SECTION mit Floating-Card "Häufige Fragen" -->
+  <section class="section-light py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7 relative">
+          <div class="aspect-[5/4] overflow-hidden border border-cream-300">
+            <img
+              src={service.image}
+              alt={`Werkstattbild ${service.title}`}
+              width="900"
+              height="720"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="absolute hidden lg:block top-8 right-8 bg-white border border-cream-300 p-5 max-w-[16rem] shadow-xl">
+            <p class="text-xs uppercase tracking-[0.18em] text-ink-500">Standort</p>
+            <p class="mt-2 text-sm font-medium text-ink leading-snug">Bornmoor 1, Hamburg-Stellingen</p>
+            <p class="mt-2 text-xs text-ink-500">{site.hoursShort}</p>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <span class="eyebrow">Häufige Fragen</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl tracking-tighter text-balance">
+            Sie fragen sich was?
+          </h2>
+          <p class="mt-5 text-base text-ink-500 leading-relaxed">
+            Kommen Sie vorbei oder schicken Sie uns Bilder per WhatsApp. Wir geben Ihnen eine ehrliche Einschätzung und einen verlässlichen Preis.
+          </p>
+          <div class="mt-8 space-y-4 border-t border-cream-300 pt-7">
+            <details class="group">
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <span class="text-sm font-medium text-ink">Wie schnell bekomme ich einen Termin?</span>
+                <ChevronRight class="h-4 w-4 text-krzred transition group-open:rotate-90" />
+              </summary>
+              <p class="mt-3 text-sm text-ink-500 leading-relaxed">
+                In der Regel innerhalb weniger Tage. Bei Unfallschäden oft am gleichen Tag - kommen Sie vorbei oder rufen Sie kurz an.
+              </p>
+            </details>
+            <details class="group border-t border-cream-300 pt-4">
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <span class="text-sm font-medium text-ink">Übernimmt das die Versicherung?</span>
+                <ChevronRight class="h-4 w-4 text-krzred transition group-open:rotate-90" />
+              </summary>
+              <p class="mt-3 text-sm text-ink-500 leading-relaxed">
+                Bei berechtigtem Anspruch ja - wir kümmern uns um die komplette Abwicklung mit der gegnerischen Versicherung.
+              </p>
+            </details>
+            <details class="group border-t border-cream-300 pt-4">
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <span class="text-sm font-medium text-ink">Bekomme ich einen Ersatzwagen?</span>
+                <ChevronRight class="h-4 w-4 text-krzred transition group-open:rotate-90" />
+              </summary>
+              <p class="mt-3 text-sm text-ink-500 leading-relaxed">
+                Ja - wir vermieten direkt Ersatzwagen oder organisieren Mietfahrzeuge über unseren Partner Autohof Stellingen.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="section-cream py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+        <div>
+          <span class="eyebrow">Weitere Leistungen</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl tracking-tighter text-balance">
+            Was wir sonst noch machen.
+          </h2>
+        </div>
+        <a href="/#leistungen" class="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-krzred">
+          Alle 10 Leistungen
+          <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-3">
+        {related.map((r) => {
+          const RIcon = iconMap[r.icon];
+          return (
+            <a href={`/leistungen/${r.slug}/`} class="card-service group">
+              <RIcon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+              <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{r.title}</h3>
+              <p class="text-[13px] text-ink-500 leading-relaxed mb-4">{r.blurb}</p>
+              <span class="inline-flex items-center gap-1 text-[13px] font-medium text-krzred group-hover:gap-2 transition-all">
+                Mehr erfahren
+                <ArrowRight class="h-3.5 w-3.5" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow={`${service.title} buchen`}
+    title="Brauchen Sie das? Schreiben Sie uns."
+    body="Wir machen Ihnen eine ehrliche Einschätzung und einen verlässlichen Preis - per WhatsApp, Telefon oder vor Ort."
+  />
+</BaseLayout>

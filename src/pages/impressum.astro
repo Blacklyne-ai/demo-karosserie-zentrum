@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { ChevronRight } from "@lucide/astro";
+---
+
+<BaseLayout
+  title="Impressum | KRZ Karosserie Reparatur Zentrum"
+  description="Impressum nach § 5 TMG - KRZ Karosserie Reparatur Zentrum UG (haftungsbeschränkt), Bornmoor 1, 22525 Hamburg-Stellingen."
+  noindex={true}
+>
+  <section class="bg-cream">
+    <div class="container-prose py-16 lg:py-20">
+      <nav aria-label="Brotkrumen" class="mb-10 flex items-center gap-1.5 text-xs text-ink-500">
+        <a href="/" class="hover:text-krzred">Willkommen</a>
+        <ChevronRight class="h-3 w-3" />
+        <span class="text-ink">Impressum</span>
+      </nav>
+      <span class="eyebrow">Rechtliches</span>
+      <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance">Impressum.</h1>
+      <p class="mt-5 text-base text-ink-500 max-w-2xl leading-relaxed">
+        Angaben gemäß § 5 TMG sowie verantwortlich für den Inhalt nach § 55 Abs. 2 RStV.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-white py-20 border-y border-cream-300">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <aside class="lg:col-span-3">
+          <nav class="sticky top-4 space-y-1.5 text-sm">
+            <a href="#anschrift" class="block text-ink-500 hover:text-krzred">Anschrift</a>
+            <a href="#kontakt" class="block text-ink-500 hover:text-krzred">Kontakt</a>
+            <a href="#vertretung" class="block text-ink-500 hover:text-krzred">Vertretung</a>
+            <a href="#register" class="block text-ink-500 hover:text-krzred">Handelsregister</a>
+            <a href="#ust" class="block text-ink-500 hover:text-krzred">USt-IdNr.</a>
+            <a href="#haftung" class="block text-ink-500 hover:text-krzred">Haftung</a>
+            <a href="#urheberrecht" class="block text-ink-500 hover:text-krzred">Urheberrecht</a>
+          </nav>
+        </aside>
+
+        <div class="lg:col-span-9 max-w-2xl space-y-12 text-sm leading-relaxed text-ink-700">
+          <div id="anschrift">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Anschrift</h2>
+            <p>{site.legal}<br/>
+            {site.address.street}<br/>
+            {site.address.zip} {site.address.city}<br/>
+            Deutschland</p>
+          </div>
+
+          <div id="kontakt">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Kontakt</h2>
+            <p>
+              Telefon: <a class="text-krzred" href={site.phone.mainTel}>{site.phone.main}</a><br/>
+              Mobil: <a class="text-krzred" href={site.phone.mobileTel}>{site.phone.mobile}</a><br/>
+              E-Mail: <a class="text-krzred" href={site.emailHref}>{site.email}</a>
+            </p>
+          </div>
+
+          <div id="vertretung">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Vertretungsberechtigter Geschäftsführer</h2>
+            <p>{site.ceo}</p>
+          </div>
+
+          <div id="register">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Handelsregister</h2>
+            <p>
+              Registergericht: Amtsgericht Hamburg<br/>
+              Registernummer: {site.hrb}
+            </p>
+          </div>
+
+          <div id="ust">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Umsatzsteuer-Identifikationsnummer</h2>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: <strong>{site.ust}</strong></p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Verantwortlich für den Inhalt</h2>
+            <p>{site.ceo}<br/>
+            Anschrift wie oben</p>
+          </div>
+
+          <div id="haftung">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Haftung für Inhalte</h2>
+            <p>
+              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+            </p>
+            <p class="mt-4">
+              Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Haftung für Links</h2>
+            <p>
+              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+            </p>
+          </div>
+
+          <div id="urheberrecht">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Urheberrecht</h2>
+            <p>
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl tracking-tight text-ink mb-4">EU-Streitschlichtung</h2>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a class="text-krzred break-all" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
+            <p class="mt-4">
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

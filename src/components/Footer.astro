@@ -1,0 +1,103 @@
+---
+import { Phone, Mail, MapPin, Clock } from "@lucide/astro";
+import Icons from "./Icons.astro";
+import { site, navServices } from "../data/site";
+const year = 2026;
+---
+
+<footer class="section-dark">
+  <div class="container-prose py-16 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-4">
+      <div class="lg:col-span-2 max-w-md">
+        <a href="/" class="inline-block">
+          <img
+            src="/logo.jpg"
+            alt="KRZ Karosserie Reparatur Zentrum"
+            class="h-12 w-auto bg-cream p-1.5"
+            width="160"
+            height="48"
+          />
+        </a>
+        <p class="mt-6 text-sm leading-relaxed text-ink-400">
+          Karosserie-Fachbetrieb in Hamburg-Stellingen. Karosseriearbeiten, Lackierung,
+          Smart-Repair, Oldtimer-Restaurierung und Unfallservice unter einem Dach.
+        </p>
+        <div class="mt-8 flex items-center gap-3">
+          <a
+            href={site.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-cream hover:text-cream transition-colors"
+          >
+            <Icons name="facebook" class="h-4 w-4" />
+          </a>
+          <a
+            href={site.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-cream hover:text-cream transition-colors"
+          >
+            <Icons name="instagram" class="h-4 w-4" />
+          </a>
+          <a
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-cream hover:text-cream transition-colors"
+          >
+            <Icons name="whatsapp" class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-medium uppercase tracking-[0.2em] text-cream">Leistungen</h4>
+        <ul class="mt-5 space-y-2.5">
+          {navServices.slice(0, 6).map((s) => (
+            <li>
+              <a href={s.href} class="text-sm text-ink-400 hover:text-cream transition-colors">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-medium uppercase tracking-[0.2em] text-cream">Kontakt</h4>
+        <ul class="mt-5 space-y-3.5 text-sm text-ink-400">
+          <li class="flex items-start gap-2.5">
+            <MapPin class="h-4 w-4 mt-0.5 shrink-0" />
+            <span>{site.address.street}<br/>{site.address.zip} {site.address.city}</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <Phone class="h-4 w-4 mt-0.5 shrink-0" />
+            <a href={site.phone.mainTel} class="hover:text-cream">{site.phone.main}</a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <Mail class="h-4 w-4 mt-0.5 shrink-0" />
+            <a href={site.emailHref} class="hover:text-cream break-all">{site.email}</a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <Clock class="h-4 w-4 mt-0.5 shrink-0" />
+            <span>{site.hoursShort}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-4 border-t border-ink-400/15 pt-6 lg:flex-row lg:items-center lg:justify-between">
+      <p class="text-xs text-ink-400">
+        © {year} {site.legal}. Alle Rechte vorbehalten.
+      </p>
+      <nav class="flex flex-wrap items-center gap-6 text-xs text-ink-400">
+        <a href="/kontakt/" class="hover:text-cream">Kontakt</a>
+        <a href="/impressum/" class="hover:text-cream">Impressum</a>
+        <a href="/datenschutz/" class="hover:text-cream">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>

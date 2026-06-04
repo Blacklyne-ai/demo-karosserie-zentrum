@@ -1,0 +1,468 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Marquee from "../components/Marquee.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site, services } from "../data/site";
+import {
+  Hammer,
+  Paintbrush2,
+  Sparkles,
+  Wrench,
+  Award,
+  PaintBucket,
+  Target,
+  Lightbulb,
+  AlertTriangle,
+  FileCheck,
+  ArrowRight,
+  Phone,
+  MessageCircle,
+  MapPin,
+  Clock,
+  Mail,
+  Star,
+  Check,
+  Eye,
+  Calendar,
+  CheckCircle,
+  Car,
+} from "@lucide/astro";
+
+const iconMap: Record<string, any> = {
+  Hammer, Paintbrush2, Sparkles, Wrench, Award, PaintBucket, Target,
+  Lightbulb, AlertTriangle, FileCheck,
+};
+
+const drei = [
+  {
+    n: "01",
+    title: "Fachbetrieb statt Werkstatt",
+    body: "Wir machen Karosserie. Keine Inspektionen, kein TÜV-Service. Fokus auf das, was wir richtig können - vom Smart-Repair bis zur kompletten Karosseriereparatur.",
+    icon: Hammer,
+  },
+  {
+    n: "02",
+    title: "Versicherung & Unfall aus einer Hand",
+    body: "Schadenmanagement, Gutachten, Ersatzwagen, Werkstatt - wir übernehmen die komplette Abwicklung mit Ihrer Versicherung.",
+    icon: FileCheck,
+  },
+  {
+    n: "03",
+    title: "Oldtimer-Karosserie mit Geduld",
+    body: "Klassiker brauchen Zeit. Wir nehmen sie uns - vom kleinen Rostfleck bis zur kompletten Restaurierung mit Originalsubstanz-Erhalt.",
+    icon: Award,
+  },
+];
+
+const process = [
+  { n: "01", title: "Schaden ansehen lassen", body: "Kurz vorbeikommen oder Bilder per WhatsApp schicken - wir machen Ihnen ein Angebot.", icon: Eye },
+  { n: "02", title: "Termin abstimmen", body: "Wir klären Versicherung und Mietwagen, Sie geben den Schlüssel ab.", icon: Calendar },
+  { n: "03", title: "Auto abholen", body: "Karosserie wie neu, Lackierung wie vom Werk. Sie holen ab, fertig.", icon: CheckCircle },
+];
+
+const trust = [
+  "Direkter Kontakt zur Versicherung",
+  "Mietwagen-Service vor Ort",
+  "Smart-Repair für Hagelschäden",
+  "Komplett-Abwicklung von Anfang bis Ende",
+];
+
+const testimonials = [
+  {
+    quote:
+      "Nach einem Auffahrunfall haben die Jungs das komplette Heck instandgesetzt - inklusive Versicherungs-Kommunikation. Der Mietwagen stand am gleichen Tag bereit.",
+    context: "Unfallschaden, 2025",
+    name: "M. K. aus Stellingen",
+  },
+  {
+    quote:
+      "Mein BMW 02 stand seit Jahren in der Garage. Bei KRZ wurde er Blech für Blech instandgesetzt - sauber, ehrlich, mit Originalsubstanz wo möglich.",
+    context: "Oldtimer-Restaurierung",
+    name: "T. R. aus Hamburg-Nord",
+  },
+  {
+    quote:
+      "Hagelschaden auf der Motorhaube - keine Neulackierung nötig. Smart-Repair am gleichen Tag, die Beulen sind weg. Versicherung hat alles übernommen.",
+    context: "Smart-Repair Hagel",
+    name: "S. W. aus Eimsbüttel",
+  },
+];
+---
+
+<BaseLayout>
+  <!-- SECTION 1: HERO -->
+  <section class="relative bg-cream overflow-hidden">
+    <div class="container-prose pt-14 pb-24 lg:pt-20 lg:pb-32">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7">
+          <span class="eyebrow">Karosserie-Fachbetrieb · Hamburg-Stellingen</span>
+          <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tighter text-balance">
+            Karosserie-Fachbetrieb in Hamburg-Stellingen.
+          </h1>
+          <p class="mt-7 text-lg lg:text-xl text-ink-500 max-w-2xl leading-relaxed">
+            Karosseriearbeiten, Lackierung, Smart-Repair, Oldtimer-Restaurierung und Unfallservice. Bornmoor 1 - direkt erreichbar.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-3">
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <MessageCircle class="h-4 w-4" />
+              WhatsApp schreiben
+            </a>
+            <a href="#leistungen" class="btn-secondary">
+              Leistungen ansehen
+              <ArrowRight class="h-4 w-4" />
+            </a>
+          </div>
+          <a
+            href={site.phone.mainTel}
+            class="mt-7 inline-flex items-center gap-2 text-sm text-ink-500 hover:text-krzred transition-colors"
+          >
+            <Phone class="h-4 w-4" />
+            Lieber kurz anrufen: <span class="font-medium text-ink">{site.phone.main}</span>
+          </a>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="aspect-[4/5] w-full overflow-hidden border border-cream-300 bg-cream-200">
+            <img
+              src="/images/services/karosseriearbeiten.jpg"
+              alt="Karosseriearbeiten in der KRZ Werkstatt Hamburg-Stellingen"
+              width="800"
+              height="1000"
+              class="h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <div class="absolute -bottom-6 -left-6 hidden sm:block bg-anthracite-800 text-cream p-5 max-w-[16rem]">
+            <p class="text-xs uppercase tracking-[0.2em] text-cream-400">Standort</p>
+            <p class="mt-2 text-base font-medium leading-snug">Bornmoor 1, 22525 Hamburg-Stellingen</p>
+            <p class="mt-2 text-xs text-ink-400">{site.hoursShort}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust-Strip -->
+      <div class="mt-20 border-t border-cream-300 pt-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5 text-sm text-ink-500">
+          <div class="flex items-center gap-2.5">
+            <Check class="h-4 w-4 text-krzred shrink-0" />
+            10 Leistungen unter einem Dach
+          </div>
+          <div class="flex items-center gap-2.5">
+            <Check class="h-4 w-4 text-krzred shrink-0" />
+            Hamburg-Stellingen
+          </div>
+          <div class="flex items-center gap-2.5">
+            <Check class="h-4 w-4 text-krzred shrink-0" />
+            Termine kurzfristig
+          </div>
+          <div class="flex items-center gap-2.5">
+            <Check class="h-4 w-4 text-krzred shrink-0" />
+            Versicherung aus einer Hand
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: MARQUEE -->
+  <Marquee />
+
+  <!-- SECTION 3: DREI DINGE -->
+  <section class="section-light py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Was uns ausmacht</span>
+        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          Drei Dinge die unseren Betrieb ausmachen.
+        </h2>
+        <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+          Wir sind kein Werkstatt-Allrounder. Wir sind ein Karosserie-Fachbetrieb - mit klarem Fokus und dem Wissen, das wir uns über Jahre erarbeitet haben.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {drei.map((d) => (
+          <div class="card-number">
+            <span class="number-badge">{d.n}</span>
+            <d.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{d.title}</h3>
+            <p class="text-sm text-ink-500 leading-relaxed">{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: 10 LEISTUNGEN GRID -->
+  <section id="leistungen" class="section-cream py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+        <div class="max-w-2xl">
+          <span class="eyebrow">Unsere Leistungen</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+            Karosserie aus einer Hand.
+          </h2>
+          <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+            Zehn Bereiche unter einem Dach. Vom kleinen Kratzer bis zur kompletten Oldtimer-Restaurierung - alles in der gleichen Werkstatt.
+          </p>
+        </div>
+        <a href="/kontakt/" class="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-krzred hover:text-krzred-600 transition-colors">
+          Direkt Kontakt aufnehmen
+          <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        {services.map((s) => {
+          const Icon = iconMap[s.icon];
+          return (
+            <a href={`/leistungen/${s.slug}/`} class="card-service group">
+              <Icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+              <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{s.title}</h3>
+              <p class="text-[13px] text-ink-500 leading-relaxed mb-4">{s.blurb}</p>
+              <span class="inline-flex items-center gap-1 text-[13px] font-medium text-krzred group-hover:gap-2 transition-all">
+                Mehr erfahren
+                <ArrowRight class="h-3.5 w-3.5" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: UNFALL & VERSICHERUNG -->
+  <section class="section-light py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5">
+          <span class="eyebrow">Unfall & Versicherung</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+            Unfall? Wir kümmern uns um die Abwicklung.
+          </h2>
+          <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+            Mietwagen, Versicherungs-Kommunikation, Karosserie und Lackierung - alles bei uns, in einem Haus, ohne dass Sie zwischen den Stellen herumtelefonieren müssen.
+          </p>
+          <div class="mt-8 space-y-3.5">
+            {trust.map((t) => (
+              <div class="flex items-start gap-3">
+                <Check class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+                <span class="text-base text-ink">{t}</span>
+              </div>
+            ))}
+          </div>
+          <a href="/leistungen/unfallservice/" class="mt-9 inline-flex btn-primary">
+            Unfall-Service ansehen
+            <ArrowRight class="h-4 w-4" />
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 relative">
+          <div class="aspect-[5/4] overflow-hidden border border-cream-300">
+            <img
+              src="/images/services/schadenmanagement.jpg"
+              alt="Schaden- und Versicherungsmanagement bei KRZ"
+              width="900"
+              height="720"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="absolute hidden md:block bottom-6 right-6 bg-white border border-cream-300 p-5 max-w-[16rem] shadow-xl">
+            <p class="text-xs uppercase tracking-[0.18em] text-ink-500">Im Notfall</p>
+            <p class="mt-2 text-base font-medium text-ink leading-snug">Mobil rund um die Uhr</p>
+            <a href={site.phone.mobileTel} class="mt-1.5 inline-flex text-sm text-krzred font-medium">
+              {site.phone.mobile}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PROCESS -->
+  <section class="section-white py-24 lg:py-32 border-y border-cream-300">
+    <div class="container-prose">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="eyebrow !justify-center">So einfach geht's</span>
+        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          Drei Schritte. Mehr nicht.
+        </h2>
+        <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+          Wir machen es Ihnen so einfach wie möglich. Sie kommen mit dem Auto, wir machen den Rest.
+        </p>
+      </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {process.map((p) => (
+          <div class="card-number">
+            <span class="number-badge">{p.n}</span>
+            <p.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.title}</h3>
+            <p class="text-sm text-ink-500 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: AUTOVERMIETUNG TEASER -->
+  <section class="section-cream py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 lg:order-2">
+          <div class="aspect-[5/4] overflow-hidden border border-cream-300">
+            <img
+              src="/images/services/autovermietung.jpg"
+              alt="Autovermietung als Ersatzwagen-Service"
+              width="800"
+              height="640"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-7 lg:order-1">
+          <span class="eyebrow">Autovermietung</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+            Auto während der Reparatur? Kein Problem.
+          </h2>
+          <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+            Wir vermieten Ersatzwagen direkt - kurzfristig und ohne Mietwagen-Drama. Sie bleiben mobil, während Ihr Auto in unserer Werkstatt steht.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/autovermietung/" class="btn-primary">
+              Zur Autovermietung
+              <ArrowRight class="h-4 w-4" />
+            </a>
+            <a href={site.phone.mainTel} class="btn-secondary">
+              <Phone class="h-4 w-4" />
+              {site.phone.main}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: TESTIMONIALS -->
+  <section class="section-light py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Stimmen unserer Kunden</span>
+        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          Was Hamburger über uns sagen.
+        </h2>
+        <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+          Echte Stimmen aus dem Alltag - vom Unfallschaden bis zum Oldtimer-Projekt.
+        </p>
+      </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {testimonials.map((t) => (
+          <figure class="bg-white border border-cream-300 p-7 lg:p-8 flex flex-col">
+            <div class="flex gap-0.5">
+              {Array.from({ length: 5 }).map(() => (
+                <Star class="h-4 w-4 fill-krzred text-krzred" />
+              ))}
+            </div>
+            <blockquote class="mt-5 text-[15px] leading-relaxed text-ink flex-1">
+              „{t.quote}"
+            </blockquote>
+            <figcaption class="mt-6 pt-5 border-t border-cream-300">
+              <p class="text-xs uppercase tracking-[0.16em] text-ink-500">{t.context}</p>
+              <p class="mt-1.5 text-sm font-medium text-ink">{t.name}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="mt-8 text-xs text-ink-500">
+        Operator-TODO: Sobald Place-ID vorhanden, durch echte Google-Reviews ersetzen.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 9: STANDORT -->
+  <section class="section-cream py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <span class="eyebrow">Standort</span>
+          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+            Bornmoor 1, Hamburg-Stellingen.
+          </h2>
+          <p class="mt-5 text-lg text-ink-500 leading-relaxed">
+            Direkt erreichbar - mit Auto, Bus oder zu Fuß aus der Umgebung. Auf dem Gelände des Autohofs Stellingen.
+          </p>
+          <div class="mt-9 space-y-5">
+            <div class="flex items-start gap-3.5">
+              <MapPin class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <div>
+                <p class="text-sm font-medium text-ink">{site.address.street}</p>
+                <p class="text-sm text-ink-500">{site.address.zip} {site.address.city}</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <Phone class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <div>
+                <a href={site.phone.mainTel} class="block text-sm font-medium text-ink hover:text-krzred">
+                  {site.phone.main}
+                </a>
+                <a href={site.phone.mobileTel} class="block text-sm text-ink-500 hover:text-krzred">
+                  Mobil: {site.phone.mobile}
+                </a>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <Mail class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <a href={site.emailHref} class="text-sm font-medium text-ink hover:text-krzred">
+                {site.email}
+              </a>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <Clock class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <ul class="text-sm space-y-1">
+                {site.hours.map((h) => (
+                  <li class="flex gap-3">
+                    <span class="text-ink font-medium w-32">{h.day}</span>
+                    <span class="text-ink-500">{h.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm">
+              <MessageCircle class="h-4 w-4" />
+              WhatsApp
+            </a>
+            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary text-sm">
+              <MapPin class="h-4 w-4" />
+              Route planen
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden border border-cream-300 bg-cream-200">
+            <iframe
+              src={site.mapsEmbed}
+              width="100%"
+              height="100%"
+              style="border:0; min-height: 28rem;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Standort KRZ auf Google Maps"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: FINAL CTA -->
+  <CtaBand />
+</BaseLayout>

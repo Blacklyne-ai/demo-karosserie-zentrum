@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { ChevronRight } from "@lucide/astro";
+---
+
+<BaseLayout
+  title="Datenschutzerklärung | KRZ Karosserie Reparatur Zentrum"
+  description="Datenschutzerklärung nach DSGVO - KRZ Karosserie Reparatur Zentrum UG (haftungsbeschränkt), Hamburg-Stellingen."
+  noindex={true}
+>
+  <section class="bg-cream">
+    <div class="container-prose py-16 lg:py-20">
+      <nav aria-label="Brotkrumen" class="mb-10 flex items-center gap-1.5 text-xs text-ink-500">
+        <a href="/" class="hover:text-krzred">Willkommen</a>
+        <ChevronRight class="h-3 w-3" />
+        <span class="text-ink">Datenschutz</span>
+      </nav>
+      <span class="eyebrow">Rechtliches</span>
+      <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance">Datenschutzerklärung.</h1>
+      <p class="mt-5 text-base text-ink-500 max-w-2xl leading-relaxed">
+        Wir nehmen den Schutz Ihrer persönlichen Daten ernst und behandeln Ihre Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (DSGVO) sowie dieser Datenschutzerklärung.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-white py-20 border-y border-cream-300">
+    <div class="container-prose">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <aside class="lg:col-span-3">
+          <nav class="sticky top-4 space-y-1.5 text-sm">
+            <a href="#verantwortlich" class="block text-ink-500 hover:text-krzred">Verantwortlicher</a>
+            <a href="#datenerfassung" class="block text-ink-500 hover:text-krzred">Datenerfassung</a>
+            <a href="#cookies" class="block text-ink-500 hover:text-krzred">Cookies</a>
+            <a href="#logfiles" class="block text-ink-500 hover:text-krzred">Server-Logfiles</a>
+            <a href="#ssl" class="block text-ink-500 hover:text-krzred">SSL-Verschlüsselung</a>
+            <a href="#auskunft" class="block text-ink-500 hover:text-krzred">Auskunftsrechte</a>
+          </nav>
+        </aside>
+
+        <div class="lg:col-span-9 max-w-2xl space-y-12 text-sm leading-relaxed text-ink-700">
+          <div id="verantwortlich">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Verantwortlicher</h2>
+            <p>
+              Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br/><br/>
+              <strong>{site.legal}</strong><br/>
+              {site.address.street}<br/>
+              {site.address.zip} {site.address.city}<br/>
+              Telefon: {site.phone.main}<br/>
+              E-Mail: {site.email}
+            </p>
+          </div>
+
+          <div id="datenerfassung">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Datenerfassung auf unserer Website</h2>
+            <h3 class="text-lg font-semibold text-ink mt-6 mb-2">Wie erfassen wir Ihre Daten?</h3>
+            <p>
+              Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder uns per E-Mail bzw. Telefon übermitteln.
+            </p>
+            <p class="mt-4">
+              Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten.
+            </p>
+          </div>
+
+          <div id="cookies">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Cookies</h2>
+            <p>
+              Unsere Internetseiten verwenden teilweise so genannte Cookies. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.
+            </p>
+            <p class="mt-4">
+              Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben.
+            </p>
+          </div>
+
+          <div id="logfiles">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Server-Logfiles</h2>
+            <p>
+              Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+            </p>
+            <ul class="mt-4 space-y-1.5 list-disc pl-5">
+              <li>Browsertyp und Browserversion</li>
+              <li>Verwendetes Betriebssystem</li>
+              <li>Referrer URL</li>
+              <li>Hostname des zugreifenden Rechners</li>
+              <li>Uhrzeit der Serveranfrage</li>
+              <li>IP-Adresse</li>
+            </ul>
+            <p class="mt-4">
+              Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Daten werden für maximal sieben Tage gespeichert und danach gelöscht.
+            </p>
+          </div>
+
+          <div id="ssl">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">SSL- bzw. TLS-Verschlüsselung</h2>
+            <p>
+              Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+            </p>
+          </div>
+
+          <div id="auskunft">
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Auskunft, Sperrung, Löschung</h2>
+            <p>
+              Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Google Maps</h2>
+            <p>
+              Diese Seite nutzt über eine API den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited ("Google"), Gordon House, Barrow Street, Dublin 4, Irland.
+            </p>
+            <p class="mt-4">
+              Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl tracking-tight text-ink mb-4">Ihre Rechte</h2>
+            <p>Ihnen stehen jederzeit folgende Rechte zu:</p>
+            <ul class="mt-4 space-y-1.5 list-disc pl-5">
+              <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+              <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+              <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+              <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+              <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+              <li>Recht auf Widerspruch (Art. 21 DSGVO)</li>
+              <li>Recht auf Beschwerde bei einer Aufsichtsbehörde</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

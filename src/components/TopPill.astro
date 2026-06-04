@@ -1,0 +1,42 @@
+---
+import { MessageCircle, Phone, MapPin, Clock, Star, ArrowRight } from "@lucide/astro";
+import { site } from "../data/site";
+---
+
+<div class="top-pill relative z-40">
+  <div class="container-prose">
+    <div class="relative flex items-center justify-between gap-4 text-[12px]">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2">
+          <span class="top-pill-dot"></span>
+          <span class="font-medium text-white">Heute geöffnet</span>
+          <span class="text-steel-500">· {site.hoursShort}</span>
+        </span>
+        <span class="hidden md:flex items-center gap-1.5 text-steel-500">
+          <MapPin class="h-3 w-3 text-krzred" />
+          <span>Bornmoor 1, Hamburg-Stellingen</span>
+        </span>
+        <span class="hidden lg:flex items-center gap-1.5 text-steel-500">
+          <Star class="h-3 w-3 fill-krzred text-krzred" />
+          <span>4.9 / 5 lokal · 100+ Reparaturen jährlich</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href={site.phone.mainTel} class="hidden sm:flex items-center gap-1.5 text-steel-500 hover:text-white transition-colors">
+          <Phone class="h-3 w-3" />
+          <span class="font-medium">{site.phone.main}</span>
+        </a>
+        <a
+          href={site.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-white font-medium hover:text-krzred transition-colors"
+        >
+          <MessageCircle class="h-3.5 w-3.5" />
+          <span>WhatsApp Direkt</span>
+          <ArrowRight class="h-3 w-3" />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

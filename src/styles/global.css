@@ -577,6 +577,152 @@
   @media (min-width: 768px) {
     .step-connector:not(:last-child)::after { display: block; }
   }
+
+  /* ═══ TOP NOTIFICATION PILL ═══ */
+  .top-pill {
+    background: linear-gradient(90deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+    color: #ffffff;
+    padding: 0.6rem 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(200, 16, 46, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .top-pill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(200, 16, 46, 0.18) 50%, transparent 100%);
+    animation: shimmer 8s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
+  }
+  .top-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #c8102e;
+    box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.7);
+    animation: pulse-dot 2s infinite;
+    display: inline-block;
+  }
+  @keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(200, 16, 46, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0); }
+  }
+
+  /* ═══ MESH GRADIENT BG ═══ */
+  .mesh-bg {
+    background:
+      radial-gradient(at 20% 10%, rgba(200, 16, 46, 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(200, 16, 46, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(15, 15, 15, 0.03) 0px, transparent 50%);
+  }
+  .mesh-bg-dark {
+    background:
+      radial-gradient(at 20% 30%, rgba(200, 16, 46, 0.22) 0px, transparent 55%),
+      radial-gradient(at 85% 10%, rgba(200, 16, 46, 0.10) 0px, transparent 50%),
+      radial-gradient(at 50% 95%, rgba(200, 16, 46, 0.10) 0px, transparent 60%);
+  }
+
+  /* ═══ GRADIENT BORDER (animated) ═══ */
+  .gradient-border {
+    position: relative;
+    background: #ffffff;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, #c8102e 0%, #0f0f0f 50%, #c8102e 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* ═══ NUMBERED BIG BADGE on dark sections ═══ */
+  .big-num {
+    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-weight: 700;
+    font-size: clamp(7rem, 14vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  }
+  .big-num-light {
+    font-family: "Oswald", "Work Sans", ui-sans-serif, sans-serif;
+    font-weight: 700;
+    font-size: clamp(7rem, 14vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, rgba(15, 15, 15, 0.06) 0%, rgba(15, 15, 15, 0.02) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(15, 15, 15, 0.12);
+  }
+
+  /* ═══ Bento-style card with detail-rich corner ═══ */
+  .corner-mark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 28px 28px 0;
+    border-color: transparent #c8102e transparent transparent;
+  }
+
+  /* ═══ Diagonal stripe banner ═══ */
+  .stripe-banner {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(200, 16, 46, 0.08) 0,
+      rgba(200, 16, 46, 0.08) 8px,
+      transparent 8px,
+      transparent 18px
+    );
+  }
+
+  /* ═══ Tape / scotch sticker for showcase ═══ */
+  .tape-sticker {
+    position: absolute;
+    background: rgba(200, 16, 46, 0.85);
+    color: #ffffff;
+    font-family: "Oswald", "Work Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.5rem;
+    transform: rotate(-3deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ═══ Header dot for nav state ═══ */
+  .nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: #c8102e;
+    display: inline-block;
+    animation: pulse-dot 2.5s infinite;
+  }
 }
 
 @layer utilities {

@@ -90,8 +90,8 @@ const testimonials = [
 
 <BaseLayout>
   <!-- ═══ HERO ═══ -->
-  <section class="bg-white">
-    <div class="container-prose pt-16 pb-24 lg:pt-24 lg:pb-32">
+  <section class="relative bg-white mesh-bg overflow-hidden">
+    <div class="container-prose relative pt-16 pb-24 lg:pt-24 lg:pb-32">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7">
           <span class="eyebrow">Karosserie-Fachbetrieb seit 2020 - Hamburg-Stellingen</span>
@@ -112,25 +112,35 @@ const testimonials = [
               {site.phone.main}
             </a>
           </div>
+          <div class="mt-10 grad-bar w-32"></div>
         </div>
 
         <div class="lg:col-span-5 relative">
-          <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-paper-200 relative">
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-paper-200 relative img-shine">
             <img
               src="/images/services/header.jpg"
               alt="KRZ Karosserie Reparatur Zentrum Hamburg-Stellingen"
               width="800"
               height="1000"
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="eager"
               decoding="async"
             />
           </div>
 
-          <!-- Single Floating Standort-Card -->
+          <!-- Decorative Num-Sticker oben rechts -->
+          <div class="num-sticker -top-5 -right-5 hidden md:flex">
+            <span class="num-sticker-value">10</span>
+            <span class="num-sticker-label">Leistungen</span>
+          </div>
+
+          <!-- Floating Standort-Card -->
           <div class="absolute -bottom-6 -left-6 hidden sm:block floating-card-warm max-w-[18rem]">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Standort</p>
-            <p class="mt-2 text-base font-semibold text-ink leading-snug">Bornmoor 1<br/>22525 Hamburg-Stellingen</p>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="top-pill-dot"></span>
+              <p class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Standort</p>
+            </div>
+            <p class="text-base font-semibold text-ink leading-snug">Bornmoor 1<br/>22525 Hamburg-Stellingen</p>
             <p class="mt-2 text-xs text-ink-500">{site.hoursShort}</p>
           </div>
         </div>
@@ -157,7 +167,7 @@ const testimonials = [
       <div class="grid gap-8 md:grid-cols-3">
         {drei.map((d) => (
           <article class="group">
-            <div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6">
+            <div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 img-shine">
               <img
                 src={d.image}
                 alt={d.title}
@@ -167,9 +177,13 @@ const testimonials = [
                 loading="lazy"
                 decoding="async"
               />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
-            <span class="text-[11px] uppercase tracking-[0.2em] text-krzred">{d.n}</span>
-            <h3 class="mt-3 text-2xl font-semibold text-ink tracking-tight leading-snug">{d.title}</h3>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-[11px] uppercase tracking-[0.2em] text-krzred">{d.n}</span>
+              <div class="h-px flex-1 bg-gradient-to-r from-krzred/40 to-transparent group-hover:from-krzred transition-colors"></div>
+            </div>
+            <h3 class="text-2xl font-semibold text-ink tracking-tight leading-snug">{d.title}</h3>
             <p class="mt-3 text-[15px] text-ink-500 leading-relaxed">{d.body}</p>
           </article>
         ))}
@@ -317,17 +331,24 @@ const testimonials = [
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
-        {showcase.map((s) => (
+        {showcase.map((s, i) => (
           <article class="group">
-            <div class="aspect-[4/5] overflow-hidden rounded-2xl mb-6 relative">
+            <div class="aspect-[4/5] overflow-hidden rounded-2xl mb-6 relative img-shine">
               <img src={s.image} alt={s.title} width="640" height="800" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/65 via-ink-900/10 to-transparent"></div>
+              <span class="absolute top-4 right-4 num-sticker !static !inline-flex w-12 h-12 bg-white/95">
+                <span class="num-sticker-value !text-base">{String(i+1).padStart(2,"0")}</span>
+              </span>
               <span class="absolute bottom-4 left-4 chip-light backdrop-blur-md text-white bg-white/15 border-white/20">
                 {s.tag}
               </span>
             </div>
             <h3 class="text-xl font-semibold text-ink tracking-tight">{s.title}</h3>
             <p class="mt-2 text-[15px] text-ink-500 leading-relaxed">{s.body}</p>
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="arrow-link mt-3">
+              Detail anfragen
+              <ArrowRight class="h-4 w-4" />
+            </a>
           </article>
         ))}
       </div>

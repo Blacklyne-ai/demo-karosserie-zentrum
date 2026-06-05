@@ -4,60 +4,41 @@ import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
 import {
   MapPin, Phone, Mail, Clock, MessageCircle, Car, Bus, ArrowRight, ChevronRight,
-  BadgeCheck, ShieldCheck, Star, ArrowUpRight,
+  ArrowUpRight,
 } from "@lucide/astro";
 
 const contact = [
-  { icon: MessageCircle, title: "WhatsApp", value: site.phone.mobile, href: site.whatsapp, hint: "Schnellste Antwort - Bilder direkt schicken", n: "01" },
-  { icon: Phone, title: "Festnetz", value: site.phone.main, href: site.phone.mainTel, hint: "Mo - Fr 9 - 18 · Sa 9 - 14", n: "02" },
-  { icon: Phone, title: "Mobil", value: site.phone.mobile, href: site.phone.mobileTel, hint: "Auch außerhalb der Öffnungszeiten", n: "03" },
-  { icon: Mail, title: "E-Mail", value: site.email, href: site.emailHref, hint: "Antwort innerhalb 1 Werktag", n: "04" },
+  { icon: MessageCircle, title: "WhatsApp", value: site.phone.mobile, href: site.whatsapp, hint: "Schnellste Antwort - Bilder direkt schicken" },
+  { icon: Phone, title: "Festnetz", value: site.phone.main, href: site.phone.mainTel, hint: "Mo - Fr 9 - 18 · Sa 9 - 14" },
+  { icon: Phone, title: "Mobil", value: site.phone.mobile, href: site.phone.mobileTel, hint: "Auch außerhalb der Öffnungszeiten" },
+  { icon: Mail, title: "E-Mail", value: site.email, href: site.emailHref, hint: "Antwort innerhalb 1 Werktag" },
 ];
 ---
 
 <BaseLayout
   title="Kontakt & Anfahrt | KRZ Karosserie-Fachbetrieb Hamburg-Stellingen"
-  description="Bornmoor 1, 22525 Hamburg-Stellingen. Telefon, WhatsApp, E-Mail. Mo - Fr 9 - 18, Sa 9 - 14. Direkt zu uns - wir helfen schnell weiter."
+  description="Bornmoor 1, 22525 Hamburg-Stellingen. Telefon, WhatsApp, E-Mail. Mo - Fr 9 - 18, Sa 9 - 14."
 >
   <!-- HERO -->
-  <section class="bg-white relative overflow-hidden mesh-bg">
-    <div aria-hidden="true" class="absolute top-4 right-[4%] hidden lg:block pointer-events-none select-none">
-      <span class="big-num-light">04</span>
-    </div>
-    <div class="absolute inset-0 dot-pattern opacity-40 pointer-events-none"></div>
-
-    <div class="container-prose relative pt-10 pb-20 lg:pt-14 lg:pb-32">
+  <section class="bg-white">
+    <div class="container-prose pt-12 pb-20 lg:pt-16 lg:pb-28">
       <nav aria-label="Brotkrumen" class="mb-8 flex items-center gap-1.5 text-xs text-ink-500">
-        <a href="/" class="hover:text-krzred">Willkommen</a>
+        <a href="/" class="hover:text-krzred transition-colors">Willkommen</a>
         <ChevronRight class="h-3 w-3" />
         <span class="text-ink font-medium">Kontakt & Anfahrt</span>
       </nav>
 
-      <div class="flex flex-wrap items-center gap-2 mb-8">
-        <span class="chip-red">
-          <BadgeCheck class="h-3 w-3" />
-          Direkter Kontakt
-        </span>
-        <span class="chip-light">
-          <MapPin class="h-3.5 w-3.5 text-krzred" />
-          Bornmoor 1
-        </span>
-        <span class="hidden sm:inline-flex chip-light">
-          <Clock class="h-3.5 w-3.5 text-krzred" />
-          {site.hoursShort}
-        </span>
-      </div>
-
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-balance leading-[1.05]">
+          <span class="eyebrow">Kontakt & Anfahrt - Hamburg-Stellingen</span>
+          <h1 class="mt-8 text-4xl sm:text-5xl lg:text-6xl tracking-tight text-balance leading-[1.05]">
             Schreiben Sie uns -<br/>
             wir <span class="brush-underline">schauen drauf.</span>
           </h1>
-          <p class="lead mt-7">
+          <p class="lead mt-8">
             Per WhatsApp, Telefon oder E-Mail. Wir antworten schnell und machen Ihnen ein ehrliches Angebot. Bilder vom Schaden helfen uns, schneller einzuschätzen.
           </p>
-          <div class="mt-9 flex flex-wrap gap-3">
+          <div class="mt-10 flex flex-wrap gap-3">
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <MessageCircle class="h-4 w-4" />
               WhatsApp schreiben
@@ -68,78 +49,51 @@ const contact = [
             </a>
           </div>
         </div>
-        <div class="lg:col-span-5 relative">
-          <div class="floating-card-dark p-7 lg:p-8 relative z-10">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="top-pill-dot"></span>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500">Heute geöffnet</p>
-            </div>
-            <p class="text-2xl font-semibold tracking-tight leading-tight text-white">
-              Bornmoor 1<br/>22525 Hamburg-Stellingen
-            </p>
-            <div class="mt-6 pt-5 border-t border-white/10">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500 mb-3">Öffnungszeiten</p>
-              <ul class="space-y-2 text-sm">
-                {site.hours.map((h, i) => (
-                  <li class="flex gap-3 items-center">
-                    <span class="text-[10px] font-condensed text-krzred w-6">{String(i+1).padStart(2,"0")}</span>
-                    <span class="flex-1 text-white">{h.day}</span>
+        <div class="lg:col-span-5">
+          <div class="bg-anthracite-800 text-white p-8 lg:p-10 rounded-2xl">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-steel-500">Adresse</p>
+            <p class="mt-3 text-2xl font-semibold tracking-tight leading-tight">Bornmoor 1<br/>22525 Hamburg-Stellingen</p>
+            <div class="mt-7 pt-6 border-t border-white/10">
+              <p class="text-[11px] uppercase tracking-[0.2em] text-steel-500">Öffnungszeiten</p>
+              <ul class="mt-3 space-y-1.5 text-sm">
+                {site.hours.map((h) => (
+                  <li class="flex gap-3">
+                    <span class="w-36 text-white">{h.day}</span>
                     <span class="text-steel-500">{h.time}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
-              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-krzred">
-                <Phone class="h-3.5 w-3.5 text-white" />
-              </span>
-              <a href={site.phone.mainTel} class="text-sm font-medium text-white hover:text-krzred transition-colors">
-                {site.phone.main}
-              </a>
-            </div>
           </div>
-          <span class="tape-sticker -top-2 right-6 z-20">Direkt vor Ort</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- KONTAKT-KANÄLE -->
-  <section class="section-white py-24 lg:py-32 border-y border-paper-300 mesh-bg">
+  <section class="section-paper py-24 lg:py-32">
     <div class="container-prose">
-      <div class="max-w-3xl mb-14">
-        <span class="eyebrow-num">
-          <span class="eyebrow-num-marker">01</span>
-          Direkt erreichbar
-        </span>
-        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <span class="eyebrow">Direkt erreichbar</span>
+        <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
           Vier Wege zu uns.
         </h2>
-        <p class="lead mt-6">
+        <p class="lead mt-7">
           Wählen Sie den Kanal, der für Sie am schnellsten passt - wir antworten auf allen.
         </p>
       </div>
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {contact.map((c) => (
           <a
             href={c.href}
             target={c.href.startsWith("http") ? "_blank" : "_self"}
             rel="noopener noreferrer"
-            class="group bg-white border border-paper-300 rounded-2xl p-7 transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_40px_-12px_rgba(15,15,15,0.12)] hover:-translate-y-1"
+            class="group bg-white rounded-2xl p-7 border border-paper-300 transition-all hover:border-krzred hover:-translate-y-1 hover:shadow-[0_18px_36px_-12px_rgba(15,15,15,0.10)]"
           >
-            <div class="flex items-center justify-between mb-5">
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-krzred to-krzred-600 shadow-lg shadow-krzred/15">
-                <c.icon class="h-5 w-5 text-white" strokeWidth={1.6} />
-              </span>
-              <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-ink-500">{c.n}</span>
-            </div>
-            <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500 font-medium mb-2">{c.title}</p>
-            <p class="text-base font-semibold text-ink mb-3 tracking-tight break-all">{c.value}</p>
-            <p class="text-[12px] text-ink-500 leading-relaxed">{c.hint}</p>
-            <div class="mt-5 pt-4 border-t border-paper-300 flex items-center justify-between">
-              <span class="text-[10px] uppercase tracking-[0.16em] text-ink-500">Direkt nutzen</span>
-              <ArrowUpRight class="h-4 w-4 text-ink-500 group-hover:text-krzred group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
-            </div>
+            <c.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+            <p class="text-[11px] uppercase tracking-[0.18em] text-ink-500 mb-2">{c.title}</p>
+            <p class="text-base font-semibold text-ink mb-2 tracking-tight break-all">{c.value}</p>
+            <p class="text-[13px] text-ink-500 leading-relaxed">{c.hint}</p>
           </a>
         ))}
       </div>
@@ -147,47 +101,39 @@ const contact = [
   </section>
 
   <!-- MAPS + ANFAHRT -->
-  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">02</span>
-            Anfahrt
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl tracking-tighter text-balance">
+          <span class="eyebrow">Anfahrt</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             So finden Sie<br/>zu uns.
           </h2>
-          <p class="lead mt-6 !text-base">
+          <p class="lead mt-7">
             Bornmoor 1 liegt im Autohof Stellingen - einem der größten Autogewerbehöfe in Hamburg. Direkt erreichbar mit dem Auto und gut angebunden mit dem ÖPNV.
           </p>
-          <div class="mt-10 space-y-4">
+          <div class="mt-10 space-y-5">
             {[
               { icon: Car, title: "Mit dem Auto", body: "Über die A7 (Abfahrt Stellingen) oder die B4. Parkplätze auf dem Gelände." },
               { icon: Bus, title: "Mit dem ÖPNV", body: "S-Bahn S3/S21 Station Stellingen, von dort wenige Minuten zu Fuß oder Bus." },
               { icon: MapPin, title: "Auf dem Gelände", body: "Im Autohof Stellingen - viele Werkstätten unter einem Dach." },
-            ].map((item, i) => (
-              <div class="group bg-white border border-paper-300 rounded-2xl p-5 flex items-start gap-4 transition-all hover:border-krzred">
-                <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
-                  <item.icon class="h-5 w-5 text-krzred group-hover:text-white transition-colors" strokeWidth={1.5} />
-                </span>
-                <div class="flex-1">
-                  <div class="flex items-center gap-3 mb-1">
-                    <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">{String(i+1).padStart(2,"0")}</span>
-                  </div>
-                  <p class="text-sm font-semibold text-ink">{item.title}</p>
-                  <p class="text-xs text-ink-500 leading-relaxed mt-1">{item.body}</p>
+            ].map((item) => (
+              <div class="flex items-start gap-4">
+                <item.icon class="h-5 w-5 text-krzred mt-0.5 shrink-0" strokeWidth={1.5} />
+                <div>
+                  <p class="text-base font-semibold text-ink">{item.title}</p>
+                  <p class="text-sm text-ink-500 leading-relaxed mt-1">{item.body}</p>
                 </div>
               </div>
             ))}
           </div>
-          <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="mt-9 inline-flex btn-secondary text-sm">
+          <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="mt-10 inline-flex btn-secondary text-sm">
             <MapPin class="h-4 w-4" />
             Route in Google Maps öffnen
           </a>
         </div>
 
-        <div class="lg:col-span-7 relative">
+        <div class="lg:col-span-7">
           <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden rounded-2xl bg-paper-200">
             <iframe
               src={site.mapsEmbed}
@@ -199,13 +145,6 @@ const contact = [
               referrerpolicy="no-referrer-when-downgrade"
               title="KRZ Standort auf Google Maps"
             ></iframe>
-          </div>
-          <div class="absolute -bottom-5 -left-5 hidden md:block floating-card-warm max-w-[18rem] z-10">
-            <div class="flex items-center gap-2 mb-2">
-              <MapPin class="h-3.5 w-3.5 text-krzred" />
-              <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500">Auf dem</p>
-            </div>
-            <p class="text-sm font-medium text-ink leading-snug">Autohof Stellingen - einer der größten Autogewerbehöfe</p>
           </div>
         </div>
       </div>

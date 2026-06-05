@@ -45,13 +45,6 @@ const process = [
   { n: "03", title: "Auto abholen", body: "Karosserie wie neu, Lackierung wie vom Werk - Sie holen Ihr Auto fertig ab.", icon: CheckCircle },
 ];
 
-const trustChips = [
-  { icon: MapPin, label: "Hamburg-Stellingen" },
-  { icon: BadgeCheck, label: "10 Leistungen unter einem Dach" },
-  { icon: ShieldCheck, label: "Versicherung aus einer Hand" },
-  { icon: Clock, label: "Mo - Sa erreichbar" },
-];
-
 const showcase = [
   {
     image: "/images/services/karosseriearbeiten.jpg",
@@ -79,347 +72,135 @@ const testimonials = [
       "Nach einem Auffahrunfall haben die Jungs das komplette Heck instandgesetzt - inklusive Versicherungs-Kommunikation. Der Mietwagen stand am gleichen Tag bereit.",
     context: "Unfallschaden, 2025",
     name: "M. K. aus Stellingen",
-    service: "Unfallservice",
   },
   {
     quote:
       "Mein BMW 02 stand seit Jahren in der Garage. Bei KRZ wurde er Blech für Blech instandgesetzt - sauber, ehrlich, mit Originalsubstanz wo möglich.",
     context: "Oldtimer-Restaurierung",
     name: "T. R. aus Hamburg-Nord",
-    service: "Oldtimer",
   },
   {
     quote:
       "Hagelschaden auf der Motorhaube - keine Neulackierung nötig. Smart-Repair am gleichen Tag, die Beulen sind weg. Versicherung hat alles übernommen.",
     context: "Smart-Repair Hagel",
     name: "S. W. aus Eimsbüttel",
-    service: "Smart-Repair",
   },
 ];
 ---
 
 <BaseLayout>
-  <!-- ═══ SECTION 1: HERO ═══ -->
-  <section class="relative bg-white overflow-hidden mesh-bg">
-    <!-- Big watermark "20" - represents 10 services x2 standbeine -->
-    <div aria-hidden="true" class="absolute -top-12 right-[6%] hidden lg:block pointer-events-none select-none">
-      <span class="big-num-light">10</span>
-    </div>
-    <!-- Subtle dot pattern background -->
-    <div class="absolute inset-0 dot-pattern opacity-40 pointer-events-none"></div>
-
-    <div class="container-prose relative pt-12 pb-32 lg:pt-16 lg:pb-40">
-      <!-- Trust-Chips Row -->
-      <div class="flex flex-wrap items-center gap-2.5 mb-10">
-        <span class="chip-red">
-          <BadgeCheck class="h-3 w-3" />
-          Karosserie-Fachbetrieb
-        </span>
-        <span class="chip-light">
-          <MapPin class="h-3.5 w-3.5 text-krzred" />
-          Bornmoor 1, Hamburg-Stellingen
-        </span>
-        <span class="chip-light">
-          <ShieldCheck class="h-3.5 w-3.5 text-krzred" />
-          Versicherungs-Partner
-        </span>
-        <span class="chip-light hidden sm:inline-flex">
-          <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-          4.9 / 5 lokal
-        </span>
-      </div>
-
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-white">
+    <div class="container-prose pt-16 pb-24 lg:pt-24 lg:pb-32">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tighter text-balance leading-[1.02]">
-            Karosserie. Lack.<br/>
-            Smart-Repair.<br/>
-            Ein Standort in <span class="brush-underline">Stellingen.</span>
+          <span class="eyebrow">Karosserie-Fachbetrieb seit 2020 - Hamburg-Stellingen</span>
+          <h1 class="mt-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight text-balance leading-[1.05]">
+            Karosserie aus einer Hand,<br/>
+            in <span class="brush-underline">Hamburg-Stellingen.</span>
           </h1>
           <p class="lead mt-8">
-            KRZ Karosserie Reparatur Zentrum - Karosseriearbeiten, Lackierung, Smart-Repair, Oldtimer-Restaurierung und Unfallservice. Alles unter einem Dach in Hamburg-Stellingen.
+            KRZ Karosserie Reparatur Zentrum - Karosseriearbeiten, Lackierung, Smart-Repair, Oldtimer-Restaurierung und Unfallservice. Alles unter einem Dach in Bornmoor 1.
           </p>
           <div class="mt-10 flex flex-wrap items-center gap-3">
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <MessageCircle class="h-4 w-4" />
               WhatsApp schreiben
             </a>
-            <a href="#leistungen" class="btn-secondary">
-              Leistungen ansehen
-              <ArrowRight class="h-4 w-4" />
-            </a>
-          </div>
-
-          <!-- Hero quick links row -->
-          <div class="mt-10 pt-8 border-t border-ink-900/8 grid sm:grid-cols-3 gap-5">
-            <a href={site.phone.mainTel} class="flex items-start gap-3 group">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
-                <Phone class="h-4 w-4 text-krzred group-hover:text-white transition-colors" />
-              </span>
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500">Festnetz</p>
-                <p class="text-sm font-medium text-ink mt-0.5 group-hover:text-krzred transition-colors">{site.phone.main}</p>
-              </div>
-            </a>
-            <a href={site.phone.mobileTel} class="flex items-start gap-3 group">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
-                <MessageCircle class="h-4 w-4 text-krzred group-hover:text-white transition-colors" />
-              </span>
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500">Mobil + WhatsApp</p>
-                <p class="text-sm font-medium text-ink mt-0.5 group-hover:text-krzred transition-colors">{site.phone.mobile}</p>
-              </div>
-            </a>
-            <a href={site.emailHref} class="flex items-start gap-3 group">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-krzred/8 group-hover:bg-krzred transition-colors shrink-0">
-                <Mail class="h-4 w-4 text-krzred group-hover:text-white transition-colors" />
-              </span>
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.18em] text-ink-500">E-Mail</p>
-                <p class="text-sm font-medium text-ink mt-0.5 group-hover:text-krzred transition-colors break-all">{site.email}</p>
-              </div>
+            <a href={site.phone.mainTel} class="btn-secondary">
+              <Phone class="h-4 w-4" />
+              {site.phone.main}
             </a>
           </div>
         </div>
 
         <div class="lg:col-span-5 relative">
-          <!-- Layered Background-Frame -->
-          <div aria-hidden="true" class="absolute -top-4 -left-4 right-12 bottom-12 border border-krzred/30 hidden md:block"></div>
-          <div aria-hidden="true" class="absolute top-12 left-12 -right-4 -bottom-4 stripe-banner hidden md:block"></div>
-
-          <!-- Main Hero Image -->
           <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-paper-200 relative">
             <img
               src="/images/services/header.jpg"
-              alt="KRZ Karosserie Reparatur Zentrum Hamburg-Stellingen - Werkstatt"
+              alt="KRZ Karosserie Reparatur Zentrum Hamburg-Stellingen"
               width="800"
               height="1000"
               class="h-full w-full object-cover"
               loading="eager"
               decoding="async"
             />
-            <!-- Image overlay-gradient bottom -->
-            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-transparent"></div>
-
-            <!-- Tape sticker -->
-            <span class="tape-sticker top-6 -left-3">Original-Foto KRZ</span>
-
-            <!-- Bottom-left chip on image -->
-            <div class="absolute bottom-4 left-4">
-              <span class="chip-dark backdrop-blur-md">
-                <Hammer class="h-3.5 w-3.5 text-krzred" />
-                Werkstatt Hamburg-Stellingen
-              </span>
-            </div>
-
-            <!-- Corner mark top-right -->
-            <span class="corner-mark"></span>
           </div>
 
-          <!-- Floating Stamp (oben rechts) -->
-          <div class="absolute -top-6 -right-6 hidden md:block stamp-glow z-10">
-            <div class="stamp-circle">
-              <span class="stamp-circle-num">10</span>
-              <span class="stamp-circle-label">Leistungen</span>
-            </div>
-          </div>
-
-          <!-- Floating Standort-Card (unten links) -->
-          <div class="absolute -bottom-8 -left-6 hidden sm:block floating-card-dark max-w-[18rem] z-10">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="top-pill-dot"></span>
-              <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500">Heute geöffnet</p>
-            </div>
-            <p class="text-base font-medium leading-snug">Bornmoor 1<br/>22525 Hamburg-Stellingen</p>
-            <div class="mt-3 pt-3 border-t border-white/10 flex items-center gap-2">
-              <Clock class="h-3.5 w-3.5 text-steel-500" />
-              <span class="text-[11px] text-steel-500">{site.hoursShort}</span>
-            </div>
-          </div>
-
-          <!-- Floating Bewertung-Card (rechts unten) -->
-          <div class="absolute -right-6 bottom-20 hidden lg:flex floating-card-warm items-center gap-3 z-10">
-            <div class="flex flex-col leading-none">
-              <span class="font-condensed text-3xl font-bold text-ink">4.9</span>
-              <span class="text-[10px] uppercase tracking-[0.16em] text-ink-500 mt-1">Bewertung</span>
-            </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex gap-0.5">
-                <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-                <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-                <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-                <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-                <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-              </div>
-              <span class="text-[10px] text-ink-500">Google + lokal</span>
-            </div>
-          </div>
-
-          <!-- Top-left WhatsApp chip -->
-          <div class="absolute -top-3 -left-3 hidden md:block floating-card-warm py-2.5 px-3.5 z-10">
-            <div class="flex items-center gap-2">
-              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-krzred">
-                <MessageCircle class="h-3.5 w-3.5 text-white" />
-              </span>
-              <div class="flex flex-col leading-tight">
-                <span class="text-[10px] uppercase tracking-[0.14em] text-ink-500">Schnellster Kanal</span>
-                <span class="text-xs font-semibold text-ink">WhatsApp + Bild</span>
-              </div>
-            </div>
+          <!-- Single Floating Standort-Card -->
+          <div class="absolute -bottom-6 -left-6 hidden sm:block floating-card-warm max-w-[18rem]">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-ink-500">Standort</p>
+            <p class="mt-2 text-base font-semibold text-ink leading-snug">Bornmoor 1<br/>22525 Hamburg-Stellingen</p>
+            <p class="mt-2 text-xs text-ink-500">{site.hoursShort}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SECTION 2: MARQUEE ═══ -->
+  <!-- ═══ MARQUEE ═══ -->
   <Marquee />
 
-  <!-- ═══ SECTION 3: STATS DARK ═══ -->
-  <section class="section-dark relative overflow-hidden py-24 lg:py-32 mesh-bg-dark">
-    <div class="absolute inset-0 dot-pattern-dark opacity-60 pointer-events-none"></div>
-    <!-- Huge watermark "KRZ" -->
-    <div aria-hidden="true" class="absolute bottom-0 right-[2%] hidden lg:block pointer-events-none select-none">
-      <span class="big-num">KRZ</span>
-    </div>
-    <div class="container-prose relative">
-      <div class="max-w-3xl mb-16">
-        <span class="eyebrow-num">
-          <span class="eyebrow-num-marker">02</span>
-          KRZ in Zahlen
-        </span>
-        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance text-white">
-          Ein Standort. Zehn Leistungen.<br/>
-          Sechs Tage die Woche.
-        </h2>
-        <div class="mt-8 flex flex-wrap gap-2.5">
-          <span class="chip-dark">
-            <BadgeCheck class="h-3.5 w-3.5 text-krzred" />
-            Hamburg-Stellingen
-          </span>
-          <span class="chip-dark">
-            <ShieldCheck class="h-3.5 w-3.5 text-krzred" />
-            Versicherungs-Partner
-          </span>
-          <span class="chip-dark">
-            <Star class="h-3.5 w-3.5 fill-krzred text-krzred" />
-            4.9 / 5 lokal
-          </span>
-        </div>
-      </div>
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="relative group">
-          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">01 - Leistungen</span>
-          <p class="stat-display mt-3 whitespace-nowrap">10</p>
-          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
-            Karosserie-Leistungen - vom Kratzer bis zur kompletten Restaurierung.
-          </p>
-          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
-        </div>
-        <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
-          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">02 - Aus einer Hand</span>
-          <p class="stat-display mt-3 whitespace-nowrap">1 Haus</p>
-          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
-            Smart-Repair, Lackiererei und Karosserie in einer Werkstatt.
-          </p>
-          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
-        </div>
-        <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
-          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">03 - Erreichbar</span>
-          <p class="stat-display mt-3 whitespace-nowrap">Mo&nbsp;-&nbsp;Sa</p>
-          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
-            Sechs Tage erreichbar, Mobilnummer auch außerhalb.
-          </p>
-          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
-        </div>
-        <div class="relative group lg:border-l lg:border-white/10 lg:pl-10">
-          <span class="text-[10px] font-condensed uppercase tracking-[0.2em] text-krzred">04 - Standort</span>
-          <p class="stat-display mt-3 whitespace-nowrap">HH</p>
-          <p class="mt-4 text-sm text-steel-500 leading-relaxed">
-            Hamburg-Stellingen - Autohof Stellingen, Bornmoor 1.
-          </p>
-          <div class="mt-4 h-px bg-gradient-to-r from-krzred to-transparent w-12 group-hover:w-24 transition-all duration-500"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SECTION 4: DREI DINGE (Image-Reveal Cards) ═══ -->
-  <section class="section-light py-24 lg:py-32 relative overflow-hidden">
+  <!-- ═══ DREI DINGE ═══ -->
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
-      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16 mb-16">
-        <div class="lg:col-span-5">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">03</span>
-            Was uns ausmacht
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-            Drei Dinge.<br/>Ein Fokus.
-          </h2>
-        </div>
-        <div class="lg:col-span-7 lg:pt-10">
-          <p class="lead">
-            Wir sind kein Werkstatt-Allrounder. Wir sind ein Karosserie-Fachbetrieb - mit klarem Fokus auf das, was wir richtig können, und dem Wissen, das wir uns über Jahre erarbeitet haben.
-          </p>
-        </div>
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <span class="eyebrow">Was uns ausmacht</span>
+        <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
+          Drei Dinge, die unseren<br/>Betrieb ausmachen.
+        </h2>
+        <p class="lead mt-7">
+          Wir sind kein Werkstatt-Allrounder. Wir sind ein Karosserie-Fachbetrieb - mit klarem Fokus auf das, was wir richtig können.
+        </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-8 md:grid-cols-3">
         {drei.map((d) => (
-          <article class="group relative bg-white border border-paper-300 overflow-hidden transition-all duration-300 hover:border-krzred hover:shadow-[0_18px_36px_-10px_rgba(15,15,15,0.15)] hover:-translate-y-1">
-            <div class="relative aspect-[5/3] overflow-hidden rounded-t-2xl">
+          <article class="group">
+            <div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6">
               <img
                 src={d.image}
                 alt={d.title}
                 width="600"
-                height="360"
+                height="450"
                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/10 to-transparent"></div>
-              <span class="absolute top-3 left-3 badge-num">{d.n}</span>
-              <span class="absolute top-3 right-3 badge-icon">
-                <d.icon class="h-5 w-5" strokeWidth={1.6} />
-              </span>
             </div>
-            <div class="p-7">
-              <h3 class="text-xl font-semibold text-ink tracking-tight">{d.title}</h3>
-              <p class="mt-3 text-sm text-ink-500 leading-relaxed">{d.body}</p>
-            </div>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-krzred">{d.n}</span>
+            <h3 class="mt-3 text-2xl font-semibold text-ink tracking-tight leading-snug">{d.title}</h3>
+            <p class="mt-3 text-[15px] text-ink-500 leading-relaxed">{d.body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ═══ SECTION 5: 10 LEISTUNGEN GRID ═══ -->
-  <section id="leistungen" class="section-paper py-24 lg:py-32 relative overflow-hidden">
-    <div class="container-prose relative">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+  <!-- ═══ 10 LEISTUNGEN GRID ═══ -->
+  <section id="leistungen" class="section-paper py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20">
         <div class="max-w-2xl">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">04</span>
-            Unsere Leistungen
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          <span class="eyebrow">Leistungen</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Zehn Leistungen.<br/>Ein Dach.
           </h2>
-          <p class="lead mt-5">
+          <p class="lead mt-7">
             Vom kleinen Kratzer bis zur kompletten Oldtimer-Restaurierung - alles in der gleichen Werkstatt, ohne Lauferei zwischen drei Betrieben.
           </p>
         </div>
-        <a href="/kontakt/" class="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-krzred hover:text-krzred-600 transition-colors">
+        <a href="/kontakt/" class="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-krzred hover:text-krzred-600 transition-colors group">
           Direkt Kontakt aufnehmen
-          <ArrowUpRight class="h-4 w-4" />
+          <ArrowUpRight class="h-4 w-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
         </a>
       </div>
 
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {services.map((s, i) => {
+        {services.map((s) => {
           const Icon = iconMap[s.icon];
           return (
-            <a href={`/leistungen/${s.slug}/`} class="card-media group relative">
+            <a href={`/leistungen/${s.slug}/`} class="card-media group">
               <div class="card-image-wrap">
                 <img
                   src={s.image}
@@ -429,27 +210,15 @@ const testimonials = [
                   width="640"
                   height="400"
                 />
-                <!-- Image overlay-gradient for badge contrast -->
-                <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-transparent to-ink-900/30 pointer-events-none"></div>
-                <span class="badge-num absolute top-3 left-3">{String(i + 1).padStart(2, "0")}</span>
-                <span class="badge-icon absolute bottom-3 right-3">
-                  <Icon class="h-5 w-5" strokeWidth={1.6} />
-                </span>
-                <!-- Service-name chip overlay -->
-                <span class="absolute bottom-3 left-3 chip-dark backdrop-blur-md text-[10px] py-1 px-2">
-                  KRZ Original
-                </span>
               </div>
               <div class="card-body">
+                <Icon class="h-6 w-6 text-krzred mb-4" strokeWidth={1.5} />
                 <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">{s.title}</h3>
                 <p class="text-[13px] text-ink-500 leading-relaxed mb-4 flex-1">{s.blurb}</p>
-                <div class="flex items-center justify-between pt-3 border-t border-paper-300">
-                  <span class="card-cta">
-                    Mehr erfahren
-                    <ArrowRight class="h-3.5 w-3.5" />
-                  </span>
-                  <span class="text-[10px] font-condensed uppercase tracking-[0.16em] text-ink-500">{String(i + 1).padStart(2, "0")} / 10</span>
-                </div>
+                <span class="card-cta">
+                  Mehr erfahren
+                  <ArrowRight class="h-3.5 w-3.5" />
+                </span>
               </div>
             </a>
           );
@@ -458,27 +227,22 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ SECTION 6: UNFALL & VERSICHERUNG ═══ -->
-  <section class="section-light py-24 lg:py-32 relative overflow-hidden">
+  <!-- ═══ UNFALL & VERSICHERUNG ═══ -->
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
         <div class="lg:col-span-5">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">05</span>
-            Unfall & Versicherung
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-            Unfall?<br/>Wir machen das.
+          <span class="eyebrow">Unfall & Versicherung</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
+            Unfall?<br/>Wir kümmern uns.
           </h2>
-          <p class="lead mt-5">
+          <p class="lead mt-7">
             Mietwagen, Versicherungs-Kommunikation, Karosserie und Lackierung - alles bei uns, in einem Haus, ohne dass Sie zwischen den Stellen herumtelefonieren müssen.
           </p>
-          <div class="mt-9 space-y-3.5">
+          <div class="mt-9 space-y-4">
             {["Direkter Kontakt zur Versicherung", "Mietwagen-Service vor Ort", "Smart-Repair für Hagelschäden", "Komplett-Abwicklung Anfang bis Ende"].map((t) => (
-              <div class="flex items-start gap-3.5 group">
-                <span class="flex h-7 w-7 items-center justify-center rounded-full bg-krzred/8 group-hover:bg-krzred transition-colors mt-0.5 shrink-0">
-                  <Check class="h-3.5 w-3.5 text-krzred group-hover:text-white transition-colors" strokeWidth={2.5} />
-                </span>
+              <div class="flex items-start gap-3">
+                <Check class="h-5 w-5 text-krzred mt-0.5 shrink-0" strokeWidth={2.5} />
                 <span class="text-base text-ink">{t}</span>
               </div>
             ))}
@@ -495,7 +259,7 @@ const testimonials = [
           </div>
         </div>
 
-        <div class="lg:col-span-7 relative">
+        <div class="lg:col-span-7">
           <div class="aspect-[5/4] overflow-hidden rounded-2xl">
             <img
               src="/images/services/schadenmanagement.jpg"
@@ -507,129 +271,78 @@ const testimonials = [
               decoding="async"
             />
           </div>
-          <!-- Floating: Mietwagen-Card -->
-          <div class="absolute -top-4 -left-4 hidden md:block floating-card-warm">
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-krzred">
-                <Car class="h-5 w-5 text-white" />
-              </span>
-              <div class="flex flex-col leading-tight">
-                <span class="text-[10px] uppercase tracking-[0.14em] text-ink-500">Sofort verfügbar</span>
-                <span class="text-sm font-semibold text-ink">Mietwagen vor Ort</span>
-              </div>
-            </div>
-          </div>
-          <!-- Floating: Notfall Mobil -->
-          <div class="absolute -bottom-6 -right-6 hidden md:block floating-card-dark max-w-[15rem]">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500">Im Notfall</p>
-            <p class="mt-2 text-base font-medium text-white leading-snug">Mobil rund<br/>um die Uhr</p>
-            <a href={site.phone.mobileTel} class="mt-2.5 inline-flex items-center gap-1.5 text-sm text-krzred font-medium">
-              {site.phone.mobile}
-              <ArrowRight class="h-3.5 w-3.5" />
-            </a>
-          </div>
-          <!-- Floating: Versicherung-Chip -->
-          <div class="absolute bottom-6 left-6 hidden md:block">
-            <span class="chip-dark backdrop-blur-md">
-              <ShieldCheck class="h-3.5 w-3.5 text-krzred" />
-              Versicherungs-Partner
-            </span>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SECTION 7: PROCESS ═══ -->
-  <section class="section-white py-24 lg:py-32 border-y border-paper-300 relative">
+  <!-- ═══ PROCESS ═══ -->
+  <section class="section-paper py-24 lg:py-32">
     <div class="container-prose">
-      <div class="max-w-3xl mb-16">
-        <span class="eyebrow-num">
-          <span class="eyebrow-num-marker">06</span>
-          So geht's
-        </span>
-        <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <span class="eyebrow">So geht's</span>
+        <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
           Drei Schritte.<br/>Mehr nicht.
         </h2>
-        <p class="lead mt-5">
+        <p class="lead mt-7">
           Wir machen es Ihnen so einfach wie möglich. Sie kommen mit dem Auto, wir machen den Rest - klar, vorhersehbar, ohne Überraschungen.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3 relative">
-        {process.map((p, i) => (
-          <div class="relative step-connector">
-            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-krzred text-white font-condensed text-lg font-bold relative z-10">
-              {p.n}
-            </span>
-            <div class="mt-6 flex items-center gap-3 mb-3">
-              <p.icon class="h-5 w-5 text-krzred" strokeWidth={1.6} />
-              <h3 class="text-xl font-semibold text-ink tracking-tight">{p.title}</h3>
+      <div class="grid gap-8 md:grid-cols-3">
+        {process.map((p) => (
+          <div class="bg-white rounded-2xl p-8 lg:p-10 border border-paper-300">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="text-xs font-medium tracking-[0.2em] text-krzred">{p.n}</span>
+              <div class="h-px w-12 bg-krzred/30"></div>
             </div>
-            <p class="text-sm text-ink-500 leading-relaxed max-w-sm">{p.body}</p>
+            <p.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.title}</h3>
+            <p class="text-[15px] text-ink-500 leading-relaxed">{p.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ═══ SECTION 8: VORHER/NACHHER SHOWCASE ═══ -->
-  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
+  <!-- ═══ SHOWCASE ═══ -->
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-        <div class="max-w-2xl">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">07</span>
-            Aus der Werkstatt
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
-            Echte Projekte.<br/>Echte Kunden.
-          </h2>
-        </div>
-        <p class="lead lg:max-w-md lg:text-right">
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <span class="eyebrow">Aus der Werkstatt</span>
+        <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
+          Echte Projekte.<br/>Echte Kunden.
+        </h2>
+        <p class="lead mt-7">
           Eine Auswahl aktueller Projekte aus der Werkstatt - vom Unfallschaden bis zum Oldtimer.
         </p>
       </div>
-      <div class="grid gap-5 md:grid-cols-3">
-        {showcase.map((s, i) => (
-          <article class="showcase-card group">
-            <img src={s.image} alt={s.title} width="640" height="800" loading="lazy" decoding="async" />
-            <div class="showcase-card-veil"></div>
-            <!-- Tape sticker -->
-            <span class={`tape-sticker top-${i === 1 ? '6' : (i === 2 ? '8' : '5')} ${i % 2 === 0 ? '-left-3' : '-right-3'}`}>
-              {i === 0 ? 'Original' : (i === 1 ? 'Projekt 2025' : 'Echtfoto')}
-            </span>
-            <!-- Number watermark -->
-            <span aria-hidden="true" class="absolute top-3 right-4 font-condensed text-5xl font-bold text-white/16 leading-none">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <div class="showcase-card-content">
-              <span class="chip-red mb-3 self-start">
-                <BadgeCheck class="h-3 w-3" />
+      <div class="grid gap-8 md:grid-cols-3">
+        {showcase.map((s) => (
+          <article class="group">
+            <div class="aspect-[4/5] overflow-hidden rounded-2xl mb-6 relative">
+              <img src={s.image} alt={s.title} width="640" height="800" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-transparent"></div>
+              <span class="absolute bottom-4 left-4 chip-light backdrop-blur-md text-white bg-white/15 border-white/20">
                 {s.tag}
               </span>
-              <h3 class="text-xl font-semibold tracking-tight">{s.title}</h3>
-              <p class="mt-2 text-sm text-white/80 leading-relaxed">{s.body}</p>
-              <div class="mt-4 pt-3 border-t border-white/20 flex items-center justify-between">
-                <span class="text-[10px] uppercase tracking-[0.16em] text-white/60">Aus der Werkstatt</span>
-                <ArrowUpRight class="h-3.5 w-3.5 text-white/60 group-hover:text-krzred transition-colors" />
-              </div>
             </div>
+            <h3 class="text-xl font-semibold text-ink tracking-tight">{s.title}</h3>
+            <p class="mt-2 text-[15px] text-ink-500 leading-relaxed">{s.body}</p>
           </article>
         ))}
       </div>
-      <p class="mt-6 text-xs text-ink-500">
+      <p class="mt-10 text-xs text-ink-500">
         Operator-TODO: echte Vorher/Nachher-Bilder aus dem Betrieb einbinden.
       </p>
     </div>
   </section>
 
-  <!-- ═══ SECTION 9: INHABER ═══ -->
-  <section class="section-dark py-24 lg:py-32 relative overflow-hidden">
-    <div class="absolute inset-0 dot-pattern-dark opacity-50 pointer-events-none"></div>
+  <!-- ═══ INHABER ═══ -->
+  <section class="section-dark py-24 lg:py-32 relative overflow-hidden mesh-bg-dark">
     <div class="container-prose relative">
-      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-        <div class="lg:col-span-5 relative">
-          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-anthracite-700 border border-white/10">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
+        <div class="lg:col-span-5">
+          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-anthracite-700">
             <img
               src="/images/services/oldtimer-restaurierung.jpg"
               alt="Werkstatt KRZ Hamburg-Stellingen"
@@ -640,43 +353,27 @@ const testimonials = [
               decoding="async"
             />
           </div>
-          <!-- Floating Stamp: Geschäftsführer -->
-          <div class="absolute -top-5 -right-5 hidden md:block floating-card-warm">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-ink-500">Inhaber & Geschäftsführer</p>
-            <p class="mt-1 text-lg font-semibold text-ink">Madjid Firozi</p>
-          </div>
-          <!-- Operator-TODO Note -->
-          <div class="absolute -bottom-3 -left-3 hidden md:block">
-            <span class="chip-dark backdrop-blur-md">
-              <Quote class="h-3 w-3 text-krzred" />
-              Operator: echtes Foto einsetzen
-            </span>
-          </div>
         </div>
         <div class="lg:col-span-7">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">08</span>
-            Inhaber
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance text-white">
-            Wir machen Karosserie.<br/>
-            Punkt.
+          <span class="eyebrow text-steel-500">Inhaber</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1] text-white">
+            Wir machen Karosserie.<br/>Punkt.
           </h2>
-          <p class="lead mt-6 text-steel-500 !max-w-2xl">
+          <p class="lead mt-7 !text-steel-500 !max-w-2xl">
             Madjid Firozi führt KRZ als Karosserie-Fachbetrieb in Hamburg-Stellingen. Kein Allrounder-Versprechen, keine Marketing-Phrasen - sondern klare Spezialisierung auf das, was wir richtig können.
           </p>
-          <div class="mt-9 grid sm:grid-cols-3 gap-6">
-            <div class="border-l-2 border-krzred pl-5">
-              <p class="font-condensed text-3xl font-bold text-white">Fokus</p>
-              <p class="mt-1 text-xs text-steel-500 leading-relaxed">Nur Karosserie, keine Inspektion.</p>
+          <div class="mt-10 pt-8 border-t border-white/10 grid sm:grid-cols-3 gap-8">
+            <div>
+              <p class="text-2xl font-semibold text-white tracking-tight">Fokus</p>
+              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Nur Karosserie, keine Inspektion.</p>
             </div>
-            <div class="border-l-2 border-krzred pl-5">
-              <p class="font-condensed text-3xl font-bold text-white">Handwerk</p>
-              <p class="mt-1 text-xs text-steel-500 leading-relaxed">Norddeutsch-präzise, ohne Pathos.</p>
+            <div>
+              <p class="text-2xl font-semibold text-white tracking-tight">Handwerk</p>
+              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Norddeutsch-präzise, ohne Pathos.</p>
             </div>
-            <div class="border-l-2 border-krzred pl-5">
-              <p class="font-condensed text-3xl font-bold text-white">Klartext</p>
-              <p class="mt-1 text-xs text-steel-500 leading-relaxed">Ehrlicher Preis, klare Aussage.</p>
+            <div>
+              <p class="text-2xl font-semibold text-white tracking-tight">Klartext</p>
+              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Ehrlicher Preis, klare Aussage.</p>
             </div>
           </div>
         </div>
@@ -684,11 +381,11 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ SECTION 10: AUTOVERMIETUNG ═══ -->
-  <section class="section-light py-24 lg:py-32 relative">
+  <!-- ═══ AUTOVERMIETUNG ═══ -->
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
-        <div class="lg:col-span-5 lg:order-2 relative">
+        <div class="lg:col-span-5 lg:order-2">
           <div class="aspect-[5/4] overflow-hidden rounded-2xl">
             <img
               src="/images/services/autovermietung.jpg"
@@ -700,27 +397,13 @@ const testimonials = [
               decoding="async"
             />
           </div>
-          <div class="absolute -bottom-5 -right-5 hidden md:block floating-card-warm">
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-krzred">
-                <Car class="h-5 w-5 text-white" />
-              </span>
-              <div class="flex flex-col leading-tight">
-                <span class="text-[10px] uppercase tracking-[0.14em] text-ink-500">Zweites Standbein</span>
-                <span class="text-sm font-semibold text-ink">Eigene Autovermietung</span>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="lg:col-span-7 lg:order-1">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">09</span>
-            Autovermietung
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          <span class="eyebrow">Autovermietung</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Mietwagen während<br/>der Reparatur?<br/>Direkt vor Ort.
           </h2>
-          <p class="lead mt-6">
+          <p class="lead mt-7">
             Wir vermieten Ersatzwagen selbst - kurzfristig und ohne Mietwagen-Drama. Sie bleiben mobil, während Ihr Auto in unserer Werkstatt steht.
           </p>
           <div class="mt-10 flex flex-wrap gap-3">
@@ -738,23 +421,20 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ SECTION 11: TESTIMONIALS ═══ -->
-  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
-    <div class="container-prose relative">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section-paper py-24 lg:py-32">
+    <div class="container-prose">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20">
         <div class="max-w-2xl">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">10</span>
-            Stimmen unserer Kunden
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          <span class="eyebrow">Stimmen unserer Kunden</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Hamburger Kunden.<br/>Echte Worte.
           </h2>
         </div>
-        <div class="flex items-center gap-4 lg:pb-2">
+        <div class="flex items-center gap-4">
           <div class="flex flex-col leading-none">
-            <span class="font-condensed text-4xl font-bold text-ink">4.9</span>
-            <span class="text-[10px] uppercase tracking-[0.14em] text-ink-500 mt-1">von 5</span>
+            <span class="text-4xl font-bold text-ink">4.9</span>
+            <span class="text-[11px] uppercase tracking-[0.16em] text-ink-500 mt-1">von 5</span>
           </div>
           <div>
             <div class="flex gap-0.5">
@@ -766,85 +446,64 @@ const testimonials = [
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         {testimonials.map((t) => (
-          <figure class="bg-white border border-paper-300 p-7 lg:p-8 flex flex-col relative">
-            <Quote class="absolute -top-3 left-7 h-7 w-7 text-krzred bg-paper-100 px-1 rotate-180" strokeWidth={1.5} />
-            <div class="flex gap-0.5">
-              {Array.from({ length: 5 }).map(() => (
-                <Star class="h-4 w-4 fill-krzred text-krzred" />
-              ))}
-            </div>
-            <blockquote class="mt-5 text-[15px] leading-relaxed text-ink flex-1">
+          <figure class="bg-white rounded-2xl p-8 lg:p-10 border border-paper-300 flex flex-col">
+            <Quote class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
+            <blockquote class="text-[15px] leading-relaxed text-ink flex-1">
               „{t.quote}"
             </blockquote>
-            <figcaption class="mt-6 pt-5 border-t border-paper-300 flex items-center justify-between gap-3">
-              <div>
-                <p class="text-sm font-medium text-ink">{t.name}</p>
-                <p class="text-xs text-ink-500">{t.context}</p>
-              </div>
-              <span class="chip-light shrink-0">
-                {t.service}
-              </span>
+            <figcaption class="mt-7 pt-6 border-t border-paper-300">
+              <p class="text-sm font-medium text-ink">{t.name}</p>
+              <p class="text-xs text-ink-500 mt-0.5">{t.context}</p>
             </figcaption>
           </figure>
         ))}
       </div>
-      <p class="mt-6 text-xs text-ink-500">
+      <p class="mt-10 text-xs text-ink-500">
         Operator-TODO: Sobald Place-ID vorhanden, durch echte Google-Reviews ersetzen.
       </p>
     </div>
   </section>
 
-  <!-- ═══ SECTION 12: STANDORT ═══ -->
-  <section class="section-light py-24 lg:py-32 relative">
+  <!-- ═══ STANDORT ═══ -->
+  <section class="bg-white py-24 lg:py-32">
     <div class="container-prose">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <span class="eyebrow-num">
-            <span class="eyebrow-num-marker">11</span>
-            Standort
-          </span>
-          <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-balance">
+          <span class="eyebrow">Standort</span>
+          <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Bornmoor 1.<br/>Hamburg-Stellingen.
           </h2>
-          <p class="lead mt-5">
+          <p class="lead mt-7">
             Auf dem Gelände des Autohofs Stellingen - direkt erreichbar mit Auto, S-Bahn S3/S21 und Bus.
           </p>
           <div class="mt-10 space-y-5">
-            <div class="flex items-start gap-3.5">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-krzred/8 mt-0.5">
-                <MapPin class="h-4 w-4 text-krzred" />
-              </span>
+            <div class="flex items-start gap-4">
+              <MapPin class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
               <div>
-                <p class="text-sm font-medium text-ink">{site.address.street}</p>
+                <p class="text-base font-medium text-ink">{site.address.street}</p>
                 <p class="text-sm text-ink-500">{site.address.zip} {site.address.city}</p>
               </div>
             </div>
-            <div class="flex items-start gap-3.5">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-krzred/8 mt-0.5">
-                <Phone class="h-4 w-4 text-krzred" />
-              </span>
+            <div class="flex items-start gap-4">
+              <Phone class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
               <div>
-                <a href={site.phone.mainTel} class="block text-sm font-medium text-ink hover:text-krzred">
+                <a href={site.phone.mainTel} class="block text-base font-medium text-ink hover:text-krzred transition-colors">
                   {site.phone.main}
                 </a>
-                <a href={site.phone.mobileTel} class="block text-sm text-ink-500 hover:text-krzred">
+                <a href={site.phone.mobileTel} class="block text-sm text-ink-500 hover:text-krzred transition-colors">
                   Mobil: {site.phone.mobile}
                 </a>
               </div>
             </div>
-            <div class="flex items-start gap-3.5">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-krzred/8 mt-0.5">
-                <Mail class="h-4 w-4 text-krzred" />
-              </span>
-              <a href={site.emailHref} class="text-sm font-medium text-ink hover:text-krzred">
+            <div class="flex items-start gap-4">
+              <Mail class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <a href={site.emailHref} class="text-base font-medium text-ink hover:text-krzred transition-colors">
                 {site.email}
               </a>
             </div>
-            <div class="flex items-start gap-3.5">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-krzred/8 mt-0.5">
-                <Clock class="h-4 w-4 text-krzred" />
-              </span>
-              <ul class="text-sm space-y-1">
+            <div class="flex items-start gap-4">
+              <Clock class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
+              <ul class="text-sm space-y-1.5">
                 {site.hours.map((h) => (
                   <li class="flex gap-3">
                     <span class="text-ink font-medium w-32">{h.day}</span>
@@ -855,39 +514,35 @@ const testimonials = [
             </div>
           </div>
           <div class="mt-10 flex flex-wrap gap-3">
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm">
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <MessageCircle class="h-4 w-4" />
               WhatsApp
             </a>
-            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary text-sm">
+            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary">
               <MapPin class="h-4 w-4" />
               Route planen
             </a>
           </div>
         </div>
 
-        <div class="lg:col-span-7 relative">
+        <div class="lg:col-span-7">
           <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden rounded-2xl bg-paper-200">
             <iframe
               src={site.mapsEmbed}
               width="100%"
               height="100%"
-              style="border:0; min-height: 32rem;"
+              style="border:0; min-height: 28rem;"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="Standort KRZ auf Google Maps"
             ></iframe>
           </div>
-          <div class="absolute -bottom-5 -left-5 hidden md:block floating-card-dark max-w-[16rem]">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-steel-500">Auf dem</p>
-            <p class="mt-1 text-base font-medium leading-snug">Autohof Stellingen<br/>einer der größten Autogewerbehöfe</p>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SECTION 13: FINAL CTA ═══ -->
+  <!-- ═══ FINAL CTA ═══ -->
   <CtaBand />
 </BaseLayout>

@@ -283,11 +283,11 @@
   }
 
   .stat-display {
-    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
+    font-family: "Roboto", ui-sans-serif, sans-serif;
     font-weight: 700;
-    font-size: clamp(3.5rem, 8vw, 6rem);
-    line-height: 0.95;
-    letter-spacing: -0.025em;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
     color: #0f0f0f;
   }
   .section-dark .stat-display { color: #ffffff; }
@@ -488,36 +488,34 @@
     font-weight: 500;
   }
 
-  /* Section eyebrow with explicit number variant */
+  /* Section eyebrow with explicit number variant - kept for legacy but visually simplified */
   .eyebrow-num {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
+    gap: 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: #c8102e;
+    color: #6b6b6b;
+  }
+  .eyebrow-num::before {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background-color: #c8102e;
   }
   .eyebrow-num-marker {
-    display: inline-block;
-    padding: 0.22rem 0.55rem;
-    border-radius: 999px;
-    background: #c8102e;
-    color: #ffffff;
-    font-size: 0.62rem;
-    box-shadow: 0 4px 10px -2px rgba(200, 16, 46, 0.4);
+    display: none;
   }
 
-  /* Decorative background pattern (subtle dot grid) */
+  /* Decorative background pattern - removed for cleaner editorial look */
   .dot-pattern {
-    background-image: radial-gradient(circle, rgba(15, 15, 15, 0.08) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-image: none;
   }
   .dot-pattern-dark {
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: none;
   }
 
   /* Glow ring around floating-stamps */
@@ -634,18 +632,14 @@
     100% { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0); }
   }
 
-  /* ═══ MESH GRADIENT BG ═══ */
+  /* ═══ MESH GRADIENT BG (very subtle - only used in 1-2 sections) ═══ */
   .mesh-bg {
-    background:
-      radial-gradient(at 20% 10%, rgba(200, 16, 46, 0.06) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, rgba(200, 16, 46, 0.04) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(15, 15, 15, 0.03) 0px, transparent 50%);
+    background: none;
   }
   .mesh-bg-dark {
     background:
-      radial-gradient(at 20% 30%, rgba(200, 16, 46, 0.22) 0px, transparent 55%),
-      radial-gradient(at 85% 10%, rgba(200, 16, 46, 0.10) 0px, transparent 50%),
-      radial-gradient(at 50% 95%, rgba(200, 16, 46, 0.10) 0px, transparent 60%);
+      radial-gradient(at 30% 40%, rgba(200, 16, 46, 0.10) 0px, transparent 55%),
+      radial-gradient(at 80% 80%, rgba(200, 16, 46, 0.06) 0px, transparent 50%);
   }
 
   /* ═══ GRADIENT BORDER (animated) ═══ */
@@ -667,53 +661,11 @@
   }
 
   /* ═══ NUMBERED BIG BADGE on dark sections ═══ */
-  .big-num {
-    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
-    font-weight: 700;
-    font-size: clamp(7rem, 14vw, 12rem);
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
-  }
-  .big-num-light {
-    font-family: "Oswald", "Roboto", ui-sans-serif, sans-serif;
-    font-weight: 700;
-    font-size: clamp(7rem, 14vw, 12rem);
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    background: linear-gradient(180deg, rgba(15, 15, 15, 0.06) 0%, rgba(15, 15, 15, 0.02) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(15, 15, 15, 0.12);
-  }
+  .big-num { display: none; }
+  .big-num-light { display: none; }
 
-  /* ═══ Bento-style card with detail-rich corner ═══ */
-  .corner-mark {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 28px 28px 0;
-    border-color: transparent #c8102e transparent transparent;
-  }
-
-  /* ═══ Diagonal stripe banner ═══ */
-  .stripe-banner {
-    background-image: repeating-linear-gradient(
-      45deg,
-      rgba(200, 16, 46, 0.08) 0,
-      rgba(200, 16, 46, 0.08) 8px,
-      transparent 8px,
-      transparent 18px
-    );
-  }
+  .corner-mark { display: none; }
+  .stripe-banner { background-image: none; }
 
   /* ═══ Tape / scotch sticker for showcase ═══ */
   .tape-sticker {

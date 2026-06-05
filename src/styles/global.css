@@ -345,15 +345,30 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15, 15, 15, 0) 50%, rgba(15, 15, 15, 0.25) 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    background: linear-gradient(180deg, rgba(15, 15, 15, 0) 35%, rgba(15, 15, 15, 0.85) 100%);
+    opacity: 0.55;
+    transition: opacity 0.5s ease;
     pointer-events: none;
   }
   .card-media:hover .card-image-wrap img {
-    transform: scale(1.06);
+    transform: scale(1.08);
   }
   .card-media:hover .card-image-wrap::after {
+    opacity: 0.92;
+  }
+  .card-media .card-image-wrap > .floating-label {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 3;
+    color: #ffffff;
+    transform: translateY(8px);
+    opacity: 0.9;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  .card-media:hover .card-image-wrap > .floating-label {
+    transform: translateY(0);
     opacity: 1;
   }
   .card-media:hover .badge-icon {

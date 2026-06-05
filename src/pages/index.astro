@@ -15,6 +15,10 @@ const iconMap: Record<string, any> = {
   Lightbulb, AlertTriangle, FileCheck,
 };
 
+// Featured + Rest (Bento Layout)
+const featured = services[0]; // Karosseriearbeiten
+const rest = services.slice(1);
+
 const drei = [
   {
     n: "01",
@@ -28,7 +32,7 @@ const drei = [
     title: "Versicherung & Unfall aus einer Hand",
     body: "Schadenmanagement, Gutachten, Ersatzwagen, Werkstatt - wir übernehmen die komplette Abwicklung mit Ihrer Versicherung.",
     icon: FileCheck,
-    image: "/images/services/schadenmanagement.jpg",
+    image: "/images/services/unfallservice.jpg",
   },
   {
     n: "03",
@@ -46,63 +50,48 @@ const process = [
 ];
 
 const showcase = [
-  {
-    image: "/images/services/karosseriearbeiten.jpg",
-    title: "Karosserie-Instandsetzung",
-    tag: "Nach Auffahrunfall",
-    body: "Komplette Heck-Instandsetzung inkl. Stoßstange, Heckklappe und Lackierung.",
-  },
-  {
-    image: "/images/services/oldtimer-restaurierung.jpg",
-    title: "Oldtimer-Restauration",
-    tag: "BMW 02 Projekt",
-    body: "Bleche neu gefertigt, Rost entfernt, Originalfarbe nach historischer Rezeptur.",
-  },
-  {
-    image: "/images/services/smart-repair.jpg",
-    title: "Hagelschaden",
-    tag: "Smart-Repair lackschadenfrei",
-    body: "Über 40 Dellen entfernt ohne Neulackierung. Same-day-Abwicklung.",
-  },
+  { before: "/images/services/karosseriearbeiten.jpg", after: "/images/services/lackierung.jpg", title: "Karosserie-Instandsetzung", tag: "Nach Auffahrunfall", body: "Komplette Heck-Instandsetzung inkl. Stoßstange, Heckklappe und Lackierung." },
+  { before: "/images/services/oldtimer-restaurierung.jpg", after: "/images/services/folierung.jpg", title: "Oldtimer-Restauration", tag: "BMW 02 Projekt", body: "Bleche neu gefertigt, Rost entfernt, Originalfarbe nach historischer Rezeptur." },
+  { before: "/images/services/smart-repair.jpg", after: "/images/services/beleuchtung.jpg", title: "Hagelschaden", tag: "Smart-Repair", body: "Über 40 Dellen entfernt ohne Neulackierung. Same-day-Abwicklung." },
 ];
 
 const testimonials = [
   {
-    quote:
-      "Nach einem Auffahrunfall haben die Jungs das komplette Heck instandgesetzt - inklusive Versicherungs-Kommunikation. Der Mietwagen stand am gleichen Tag bereit.",
+    quote: "Nach einem Auffahrunfall haben die Jungs das komplette Heck instandgesetzt - inklusive Versicherungs-Kommunikation. Der Mietwagen stand am gleichen Tag bereit.",
     context: "Unfallschaden, 2025",
     name: "M. K. aus Stellingen",
   },
   {
-    quote:
-      "Mein BMW 02 stand seit Jahren in der Garage. Bei KRZ wurde er Blech für Blech instandgesetzt - sauber, ehrlich, mit Originalsubstanz wo möglich.",
+    quote: "Mein BMW 02 stand seit Jahren in der Garage. Bei KRZ wurde er Blech für Blech instandgesetzt - sauber, ehrlich, mit Originalsubstanz wo möglich.",
     context: "Oldtimer-Restaurierung",
     name: "T. R. aus Hamburg-Nord",
   },
   {
-    quote:
-      "Hagelschaden auf der Motorhaube - keine Neulackierung nötig. Smart-Repair am gleichen Tag, die Beulen sind weg. Versicherung hat alles übernommen.",
+    quote: "Hagelschaden auf der Motorhaube - keine Neulackierung nötig. Smart-Repair am gleichen Tag, die Beulen sind weg. Versicherung hat alles übernommen.",
     context: "Smart-Repair Hagel",
     name: "S. W. aus Eimsbüttel",
   },
 ];
+
+const FeaturedIcon = iconMap[featured.icon];
 ---
 
 <BaseLayout>
-  <!-- ═══ HERO ═══ -->
-  <section class="relative bg-white mesh-bg overflow-hidden">
-    <div class="container-prose relative pt-16 pb-24 lg:pt-24 lg:pb-32">
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="relative bg-white overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-4 lg:-top-8 right-4 lg:right-12 display-num pointer-events-none">01</span>
+    <div class="container-prose relative pt-14 pb-24 lg:pt-20 lg:pb-32">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
         <div class="lg:col-span-7">
-          <span class="eyebrow">Karosserie-Fachbetrieb seit 2020 - Hamburg-Stellingen</span>
-          <h1 class="mt-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight text-balance leading-[1.05]">
+          <span class="eyebrow reveal">Karosserie-Fachbetrieb seit 2020 - Hamburg-Stellingen</span>
+          <h1 class="reveal mt-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight text-balance leading-[1.04]" style="--reveal-delay:120ms">
             Karosserie aus einer Hand,<br/>
             in <span class="brush-underline">Hamburg-Stellingen.</span>
           </h1>
-          <p class="lead mt-8">
+          <p class="lead mt-8 reveal" style="--reveal-delay:240ms">
             KRZ Karosserie Reparatur Zentrum - Karosseriearbeiten, Lackierung, Smart-Repair, Oldtimer-Restaurierung und Unfallservice. Alles unter einem Dach in Bornmoor 1.
           </p>
-          <div class="mt-10 flex flex-wrap items-center gap-3">
+          <div class="mt-10 flex flex-wrap items-center gap-3 reveal" style="--reveal-delay:360ms">
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <MessageCircle class="h-4 w-4" />
               WhatsApp schreiben
@@ -112,11 +101,32 @@ const testimonials = [
               {site.phone.main}
             </a>
           </div>
-          <div class="mt-10 grad-bar w-32"></div>
+
+          <!-- Mini stats below hero -->
+          <div class="mt-14 grid grid-cols-3 gap-4 lg:gap-8 pt-8 border-t border-paper-300 reveal" style="--reveal-delay:480ms">
+            <div>
+              <p class="text-3xl lg:text-4xl font-bold tracking-tight text-ink">
+                <span class="stat-count" data-target="10">0</span>
+              </p>
+              <p class="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-500">Leistungen</p>
+            </div>
+            <div>
+              <p class="text-3xl lg:text-4xl font-bold tracking-tight text-ink">
+                <span class="stat-count" data-target="4.9" data-decimals="1">0</span>
+              </p>
+              <p class="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-500">Bewertung</p>
+            </div>
+            <div>
+              <p class="text-3xl lg:text-4xl font-bold tracking-tight text-ink">
+                <span class="stat-count" data-target="100" data-suffix="+">0</span>
+              </p>
+              <p class="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-500">Reparaturen / Jahr</p>
+            </div>
+          </div>
         </div>
 
-        <div class="lg:col-span-5 relative">
-          <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-paper-200 relative img-shine">
+        <div class="lg:col-span-5 relative reveal-scale" style="--reveal-delay:400ms">
+          <div class="aspect-[4/5] w-full overflow-hidden rounded-3xl bg-paper-200 relative img-shine">
             <img
               src="/images/services/header.jpg"
               alt="KRZ Karosserie Reparatur Zentrum Hamburg-Stellingen"
@@ -126,15 +136,13 @@ const testimonials = [
               loading="eager"
               decoding="async"
             />
+            <!-- Floating Stamp -->
+            <div class="num-sticker -top-5 -right-5 hidden md:flex">
+              <span class="num-sticker-value">10</span>
+              <span class="num-sticker-label">Leistungen</span>
+            </div>
           </div>
-
-          <!-- Decorative Num-Sticker oben rechts -->
-          <div class="num-sticker -top-5 -right-5 hidden md:flex">
-            <span class="num-sticker-value">10</span>
-            <span class="num-sticker-label">Leistungen</span>
-          </div>
-
-          <!-- Floating Standort-Card -->
+          <!-- Floating Standort -->
           <div class="absolute -bottom-6 -left-6 hidden sm:block floating-card-warm max-w-[18rem]">
             <div class="flex items-center gap-2 mb-2">
               <span class="top-pill-dot"></span>
@@ -148,13 +156,13 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ MARQUEE ═══ -->
   <Marquee />
 
-  <!-- ═══ DREI DINGE ═══ -->
-  <section class="bg-white py-24 lg:py-32">
-    <div class="container-prose">
-      <div class="max-w-3xl mb-16 lg:mb-20">
+  <!-- ═══════════ DREI DINGE ═══════════ -->
+  <section class="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">02</span>
+    <div class="container-prose relative">
+      <div class="max-w-3xl mb-16 lg:mb-20 reveal">
         <span class="eyebrow">Was uns ausmacht</span>
         <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
           Drei Dinge, die unseren<br/>Betrieb ausmachen.
@@ -163,21 +171,12 @@ const testimonials = [
           Wir sind kein Werkstatt-Allrounder. Wir sind ein Karosserie-Fachbetrieb - mit klarem Fokus auf das, was wir richtig können.
         </p>
       </div>
-
       <div class="grid gap-8 md:grid-cols-3">
-        {drei.map((d) => (
-          <article class="group">
+        {drei.map((d, i) => (
+          <article class="group reveal" style={`--reveal-delay:${i * 120}ms`}>
             <div class="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6 img-shine">
-              <img
-                src={d.image}
-                alt={d.title}
-                width="600"
-                height="450"
-                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <img src={d.image} alt={d.title} width="600" height="450" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div class="flex items-center gap-3 mb-3">
               <span class="text-[11px] uppercase tracking-[0.2em] text-krzred">{d.n}</span>
@@ -191,17 +190,18 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ 10 LEISTUNGEN GRID ═══ -->
-  <section id="leistungen" class="section-paper py-24 lg:py-32">
-    <div class="container-prose">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20">
+  <!-- ═══════════ LEISTUNGEN BENTO ═══════════ -->
+  <section id="leistungen" class="section-paper py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">03</span>
+    <div class="container-prose relative">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20 reveal">
         <div class="max-w-2xl">
           <span class="eyebrow">Leistungen</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Zehn Leistungen.<br/>Ein Dach.
           </h2>
           <p class="lead mt-7">
-            Vom kleinen Kratzer bis zur kompletten Oldtimer-Restaurierung - alles in der gleichen Werkstatt, ohne Lauferei zwischen drei Betrieben.
+            Vom kleinen Kratzer bis zur kompletten Oldtimer-Restaurierung - alles in der gleichen Werkstatt.
           </p>
         </div>
         <a href="/kontakt/" class="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-krzred hover:text-krzred-600 transition-colors group">
@@ -210,60 +210,72 @@ const testimonials = [
         </a>
       </div>
 
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {services.map((s, i) => {
-          const Icon = iconMap[s.icon];
-          return (
-            <a href={`/leistungen/${s.slug}/`} class="card-media group relative">
-              <div class="card-image-wrap !aspect-[3/4]">
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="800"
-                />
-                <span class="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-md text-white text-[10px] font-medium border border-white/20">
-                  <span class="text-krzred font-condensed">{String(i+1).padStart(2,"0")}</span>
-                  Leistung
-                </span>
-                <span class="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 backdrop-blur-md text-ink transition-all group-hover:bg-krzred group-hover:text-white group-hover:rotate-[-6deg]">
-                  <Icon class="h-4 w-4" strokeWidth={1.6} />
-                </span>
-                <div class="floating-label">
-                  <h3 class="text-lg font-semibold tracking-tight leading-tight">{s.title}</h3>
-                  <div class="mt-2 flex items-center justify-between gap-2">
-                    <span class="text-[11px] uppercase tracking-[0.16em] text-white/70 truncate">Hamburg-Stellingen</span>
-                    <span class="inline-flex items-center gap-1 text-[12px] font-medium text-white">
-                      Ansehen
-                      <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </span>
+      <!-- Bento: Featured large + 3 columns rest -->
+      <div class="grid gap-5 lg:grid-cols-12">
+        <!-- Featured Card -->
+        <a href={`/leistungen/${featured.slug}/`} class="card-featured group lg:col-span-5 reveal-scale">
+          <img src={featured.image} alt={featured.title} width="900" height="1200" loading="lazy" decoding="async" />
+          <div class="card-featured-body">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-[11px] uppercase tracking-[0.2em] text-krzred">01 - Featured</span>
+              <div class="h-px w-12 bg-krzred"></div>
+            </div>
+            <FeaturedIcon class="h-9 w-9 text-white mb-5" strokeWidth={1.5} />
+            <h3 class="text-3xl lg:text-4xl font-semibold tracking-tight leading-tight">{featured.title}</h3>
+            <p class="mt-4 text-[15px] text-white/85 leading-relaxed max-w-md">{featured.blurb}</p>
+            <span class="mt-7 inline-flex items-center gap-2 text-sm font-medium text-white group-hover:gap-3 transition-all">
+              Im Detail ansehen
+              <ArrowRight class="h-4 w-4" />
+            </span>
+          </div>
+        </a>
+
+        <!-- Rest 9 services in 3-col grid -->
+        <div class="lg:col-span-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((s, i) => {
+            const Icon = iconMap[s.icon];
+            return (
+              <a href={`/leistungen/${s.slug}/`} class="card-media group relative reveal" style={`--reveal-delay:${i * 70}ms`}>
+                <div class="card-image-wrap !aspect-[1/1]">
+                  <img src={s.image} alt={s.title} loading="lazy" decoding="async" width="500" height="500" />
+                  <span class="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-white text-[10px] font-medium border border-white/20">
+                    <span class="text-krzred font-condensed">{String(i + 2).padStart(2, "0")}</span>
+                  </span>
+                  <span class="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 backdrop-blur-md text-ink transition-all group-hover:bg-krzred group-hover:text-white group-hover:rotate-[-6deg]">
+                    <Icon class="h-3.5 w-3.5" strokeWidth={1.6} />
+                  </span>
+                  <div class="floating-label">
+                    <h3 class="text-base font-semibold tracking-tight leading-tight">{s.title}</h3>
+                    <div class="mt-1.5 flex items-center justify-between gap-2">
+                      <span class="text-[10px] uppercase tracking-[0.16em] text-white/70">Hamburg</span>
+                      <ArrowRight class="h-3.5 w-3.5 text-white transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          );
-        })}
+              </a>
+            );
+          })}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ UNFALL & VERSICHERUNG ═══ -->
-  <section class="bg-white py-24 lg:py-32">
-    <div class="container-prose">
+  <!-- ═══════════ UNFALL & VERSICHERUNG ═══════════ -->
+  <section class="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">04</span>
+    <div class="container-prose relative">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 reveal">
           <span class="eyebrow">Unfall & Versicherung</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Unfall?<br/>Wir kümmern uns.
           </h2>
           <p class="lead mt-7">
-            Mietwagen, Versicherungs-Kommunikation, Karosserie und Lackierung - alles bei uns, in einem Haus, ohne dass Sie zwischen den Stellen herumtelefonieren müssen.
+            Mietwagen, Versicherungs-Kommunikation, Karosserie und Lackierung - alles bei uns, in einem Haus.
           </p>
           <div class="mt-9 space-y-4">
-            {["Direkter Kontakt zur Versicherung", "Mietwagen-Service vor Ort", "Smart-Repair für Hagelschäden", "Komplett-Abwicklung Anfang bis Ende"].map((t) => (
-              <div class="flex items-start gap-3">
+            {["Direkter Kontakt zur Versicherung", "Mietwagen-Service vor Ort", "Smart-Repair für Hagelschäden", "Komplett-Abwicklung Anfang bis Ende"].map((t, i) => (
+              <div class="flex items-start gap-3 reveal" style={`--reveal-delay:${i * 80}ms`}>
                 <Check class="h-5 w-5 text-krzred mt-0.5 shrink-0" strokeWidth={2.5} />
                 <span class="text-base text-ink">{t}</span>
               </div>
@@ -281,159 +293,141 @@ const testimonials = [
           </div>
         </div>
 
-        <div class="lg:col-span-7">
-          <div class="aspect-[5/4] overflow-hidden rounded-2xl">
-            <img
-              src="/images/services/schadenmanagement.jpg"
-              alt="Schaden- und Versicherungsmanagement bei KRZ"
-              width="900"
-              height="720"
-              class="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+        <div class="lg:col-span-7 reveal-scale" style="--reveal-delay:200ms">
+          <div class="aspect-[5/4] overflow-hidden rounded-3xl img-shine">
+            <img src="/images/services/unfallservice.jpg" alt="Schaden- und Versicherungsmanagement bei KRZ" width="900" height="720" class="h-full w-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ PROCESS ═══ -->
-  <section class="section-paper py-24 lg:py-32">
-    <div class="container-prose">
-      <div class="max-w-3xl mb-16 lg:mb-20">
+  <!-- ═══════════ PROCESS TIMELINE ═══════════ -->
+  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">05</span>
+    <div class="container-prose relative">
+      <div class="max-w-3xl mb-16 lg:mb-20 reveal">
         <span class="eyebrow">So geht's</span>
         <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
           Drei Schritte.<br/>Mehr nicht.
         </h2>
         <p class="lead mt-7">
-          Wir machen es Ihnen so einfach wie möglich. Sie kommen mit dem Auto, wir machen den Rest - klar, vorhersehbar, ohne Überraschungen.
+          Klar, vorhersehbar, ohne Überraschungen.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3">
-        {process.map((p) => (
-          <div class="bg-white rounded-2xl p-8 lg:p-10 border border-paper-300">
-            <div class="flex items-center gap-4 mb-6">
-              <span class="text-xs font-medium tracking-[0.2em] text-krzred">{p.n}</span>
-              <div class="h-px w-12 bg-krzred/30"></div>
+      <div class="relative">
+        <!-- Connecting line desktop -->
+        <div aria-hidden="true" class="absolute top-7 left-0 right-0 h-px hidden md:block">
+          <div class="h-full bg-gradient-to-r from-krzred via-krzred/40 to-transparent"></div>
+        </div>
+        <div class="grid gap-8 md:grid-cols-3 relative">
+          {process.map((p, i) => (
+            <div class="bg-white rounded-2xl p-8 lg:p-10 border border-paper-300 reveal" style={`--reveal-delay:${i * 140}ms`}>
+              <div class="flex items-center gap-4 mb-6">
+                <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-krzred to-krzred-600 text-white font-condensed text-xl font-bold shadow-lg shadow-krzred/25">
+                  {p.n}
+                </span>
+                <p.icon class="h-6 w-6 text-krzred" strokeWidth={1.5} />
+              </div>
+              <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.title}</h3>
+              <p class="text-[15px] text-ink-500 leading-relaxed">{p.body}</p>
             </div>
-            <p.icon class="h-7 w-7 text-krzred mb-5" strokeWidth={1.5} />
-            <h3 class="text-xl font-semibold text-ink mb-3 tracking-tight">{p.title}</h3>
-            <p class="text-[15px] text-ink-500 leading-relaxed">{p.body}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SHOWCASE ═══ -->
-  <section class="bg-white py-24 lg:py-32">
-    <div class="container-prose">
-      <div class="max-w-3xl mb-16 lg:mb-20">
+  <!-- ═══════════ VORHER NACHHER SLIDER ═══════════ -->
+  <section class="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">06</span>
+    <div class="container-prose relative">
+      <div class="max-w-3xl mb-16 lg:mb-20 reveal">
         <span class="eyebrow">Aus der Werkstatt</span>
         <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
           Echte Projekte.<br/>Echte Kunden.
         </h2>
         <p class="lead mt-7">
-          Eine Auswahl aktueller Projekte aus der Werkstatt - vom Unfallschaden bis zum Oldtimer.
+          Slider verschieben - sehen Sie, was wir aus jedem Fall machen.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3">
+      <div class="grid gap-8 lg:grid-cols-3">
         {showcase.map((s, i) => (
-          <article class="group">
-            <div class="aspect-[4/5] overflow-hidden rounded-2xl mb-6 relative img-shine">
-              <img src={s.image} alt={s.title} width="640" height="800" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/65 via-ink-900/10 to-transparent"></div>
-              <span class="absolute top-4 right-4 num-sticker !static !inline-flex w-12 h-12 bg-white/95">
-                <span class="num-sticker-value !text-base">{String(i+1).padStart(2,"0")}</span>
-              </span>
-              <span class="absolute bottom-4 left-4 chip-light backdrop-blur-md text-white bg-white/15 border-white/20">
-                {s.tag}
-              </span>
+          <article class="reveal" style={`--reveal-delay:${i * 140}ms`}>
+            <div class="ba-slider mb-5">
+              <img class="ba-before" src={s.before} alt={`${s.title} vorher`} loading="lazy" decoding="async" />
+              <img class="ba-after" src={s.after} alt={`${s.title} nachher`} loading="lazy" decoding="async" />
+              <span class="ba-label left">Vorher</span>
+              <span class="ba-label right">Nachher</span>
+              <span class="ba-handle"></span>
             </div>
-            <h3 class="text-xl font-semibold text-ink tracking-tight">{s.title}</h3>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-krzred/8 text-krzred text-[10px] font-medium uppercase tracking-[0.16em]">
+              <BadgeCheck class="h-3 w-3" />
+              {s.tag}
+            </span>
+            <h3 class="mt-3 text-xl font-semibold text-ink tracking-tight">{s.title}</h3>
             <p class="mt-2 text-[15px] text-ink-500 leading-relaxed">{s.body}</p>
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="arrow-link mt-3">
-              Detail anfragen
-              <ArrowRight class="h-4 w-4" />
-            </a>
           </article>
         ))}
       </div>
       <p class="mt-10 text-xs text-ink-500">
-        Operator-TODO: echte Vorher/Nachher-Bilder aus dem Betrieb einbinden.
+        Operator-TODO: durch echte Vorher/Nachher-Bilder aus dem Betrieb ersetzen. Slider ist live ziehbar.
       </p>
     </div>
   </section>
 
-  <!-- ═══ INHABER ═══ -->
+  <!-- ═══════════ INHABER ═══════════ -->
   <section class="section-dark py-24 lg:py-32 relative overflow-hidden mesh-bg-dark">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">07</span>
     <div class="container-prose relative">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
-        <div class="lg:col-span-5">
-          <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-anthracite-700">
-            <img
-              src="/images/services/oldtimer-restaurierung.jpg"
-              alt="Werkstatt KRZ Hamburg-Stellingen"
-              width="800"
-              height="1000"
-              class="h-full w-full object-cover opacity-90"
-              loading="lazy"
-              decoding="async"
-            />
+        <div class="lg:col-span-5 reveal-scale">
+          <div class="aspect-[4/5] overflow-hidden rounded-3xl bg-anthracite-700 img-shine">
+            <img src="/images/services/oldtimer-restaurierung.jpg" alt="Werkstatt KRZ Hamburg-Stellingen" width="800" height="1000" class="h-full w-full object-cover opacity-90" loading="lazy" decoding="async" />
           </div>
         </div>
-        <div class="lg:col-span-7">
+        <div class="lg:col-span-7 reveal" style="--reveal-delay:120ms">
           <span class="eyebrow text-steel-500">Inhaber</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1] text-white">
             Wir machen Karosserie.<br/>Punkt.
           </h2>
           <p class="lead mt-7 !text-steel-500 !max-w-2xl">
-            Madjid Firozi führt KRZ als Karosserie-Fachbetrieb in Hamburg-Stellingen. Kein Allrounder-Versprechen, keine Marketing-Phrasen - sondern klare Spezialisierung auf das, was wir richtig können.
+            Madjid Firozi führt KRZ als Karosserie-Fachbetrieb in Hamburg-Stellingen. Kein Allrounder-Versprechen, keine Marketing-Phrasen - sondern klare Spezialisierung.
           </p>
           <div class="mt-10 pt-8 border-t border-white/10 grid sm:grid-cols-3 gap-8">
-            <div>
-              <p class="text-2xl font-semibold text-white tracking-tight">Fokus</p>
-              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Nur Karosserie, keine Inspektion.</p>
-            </div>
-            <div>
-              <p class="text-2xl font-semibold text-white tracking-tight">Handwerk</p>
-              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Norddeutsch-präzise, ohne Pathos.</p>
-            </div>
-            <div>
-              <p class="text-2xl font-semibold text-white tracking-tight">Klartext</p>
-              <p class="mt-2 text-sm text-steel-500 leading-relaxed">Ehrlicher Preis, klare Aussage.</p>
-            </div>
+            {[
+              {t: "Fokus", b: "Nur Karosserie, keine Inspektion."},
+              {t: "Handwerk", b: "Norddeutsch-präzise, ohne Pathos."},
+              {t: "Klartext", b: "Ehrlicher Preis, klare Aussage."},
+            ].map((s, i) => (
+              <div class="reveal" style={`--reveal-delay:${i * 140 + 200}ms`}>
+                <p class="text-2xl font-semibold text-white tracking-tight">{s.t}</p>
+                <p class="mt-2 text-sm text-steel-500 leading-relaxed">{s.b}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ AUTOVERMIETUNG ═══ -->
-  <section class="bg-white py-24 lg:py-32">
-    <div class="container-prose">
+  <!-- ═══════════ AUTOVERMIETUNG ═══════════ -->
+  <section class="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">08</span>
+    <div class="container-prose relative">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-20 items-center">
-        <div class="lg:col-span-5 lg:order-2">
-          <div class="aspect-[5/4] overflow-hidden rounded-2xl">
-            <img
-              src="/images/services/autovermietung.jpg"
-              alt="Autovermietung als Ersatzwagen-Service"
-              width="800"
-              height="640"
-              class="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+        <div class="lg:col-span-5 lg:order-2 reveal-scale">
+          <div class="aspect-[5/4] overflow-hidden rounded-3xl img-shine">
+            <img src="/images/services/autovermietung.jpg" alt="Autovermietung" width="800" height="640" class="h-full w-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
-        <div class="lg:col-span-7 lg:order-1">
+        <div class="lg:col-span-7 lg:order-1 reveal">
           <span class="eyebrow">Autovermietung</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Mietwagen während<br/>der Reparatur?<br/>Direkt vor Ort.
           </h2>
           <p class="lead mt-7">
-            Wir vermieten Ersatzwagen selbst - kurzfristig und ohne Mietwagen-Drama. Sie bleiben mobil, während Ihr Auto in unserer Werkstatt steht.
+            Wir vermieten Ersatzwagen selbst - kurzfristig und ohne Mietwagen-Drama.
           </p>
           <div class="mt-10 flex flex-wrap gap-3">
             <a href="/autovermietung/" class="btn-primary">
@@ -450,17 +444,17 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- ═══ GOOGLE REVIEWS ═══ -->
-  <section class="section-paper py-24 lg:py-32">
-    <div class="container-prose">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
+  <!-- ═══════════ GOOGLE REVIEWS ═══════════ -->
+  <section class="section-paper py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">09</span>
+    <div class="container-prose relative">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 reveal">
         <div class="max-w-2xl">
           <span class="eyebrow">Google Bewertungen</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Was Kunden auf<br/>Google sagen.
           </h2>
         </div>
-        <!-- Google-Style Rating Summary -->
         <div class="flex items-center gap-5 bg-white rounded-2xl p-5 lg:p-6 border border-paper-300 shadow-lg shadow-ink-900/5">
           <svg viewBox="0 0 48 48" class="h-12 w-12 shrink-0" aria-hidden="true">
             <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
@@ -470,7 +464,9 @@ const testimonials = [
           </svg>
           <div>
             <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-bold text-ink leading-none">4.9</span>
+              <span class="text-3xl font-bold text-ink leading-none">
+                <span class="stat-count" data-target="4.9" data-decimals="1">0</span>
+              </span>
               <span class="text-sm text-ink-500">/ 5</span>
             </div>
             <div class="flex gap-0.5 mt-1">
@@ -478,21 +474,16 @@ const testimonials = [
             </div>
             <p class="text-[11px] text-ink-500 mt-1.5">Bewertungen auf Google</p>
           </div>
-          <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 ml-2 text-sm font-medium text-krzred hover:text-krzred-600 transition-colors">
-            Alle ansehen
-            <ArrowUpRight class="h-4 w-4" />
-          </a>
         </div>
       </div>
 
-      <!-- Reviews Grid - Google-style cards -->
       <div class="grid gap-5 md:grid-cols-3">
         {testimonials.map((t, i) => {
           const initials = t.name.split(" ").map(p => p[0]).join("").slice(0,2);
           const colors = ["bg-blue-500", "bg-orange-500", "bg-emerald-600"];
           const dates = ["vor 2 Wochen", "vor 1 Monat", "vor 3 Wochen"];
           return (
-            <article class="bg-white rounded-2xl p-7 lg:p-8 border border-paper-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col group">
+            <article class="bg-white rounded-2xl p-7 lg:p-8 border border-paper-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col reveal" style={`--reveal-delay:${i * 140}ms`}>
               <header class="flex items-start justify-between gap-3 mb-5">
                 <div class="flex items-center gap-3">
                   <span class={`flex h-11 w-11 items-center justify-center rounded-full text-white font-semibold text-sm ${colors[i]}`}>
@@ -513,9 +504,7 @@ const testimonials = [
               <div class="flex gap-0.5 mb-4">
                 {Array.from({length: 5}).map(() => (<Star class="h-4 w-4 fill-[#FFC107] text-[#FFC107]" />))}
               </div>
-              <blockquote class="text-[14px] leading-relaxed text-ink-700 flex-1">
-                {t.quote}
-              </blockquote>
+              <blockquote class="text-[14px] leading-relaxed text-ink-700 flex-1">{t.quote}</blockquote>
               <footer class="mt-6 pt-5 border-t border-paper-300 flex items-center justify-between">
                 <span class="text-[11px] text-ink-500">{t.context}</span>
                 <span class="inline-flex items-center gap-1 text-[11px] text-ink-500">
@@ -527,108 +516,41 @@ const testimonials = [
           );
         })}
       </div>
-
-      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-white border border-paper-300">
-        <div class="flex items-center gap-3">
-          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-paper-100">
-            <Quote class="h-4 w-4 text-krzred" />
-          </span>
-          <div>
-            <p class="text-sm font-medium text-ink">Selbst eine Bewertung abgeben?</p>
-            <p class="text-xs text-ink-500 mt-0.5">Über Google Maps - dauert 30 Sekunden.</p>
-          </div>
-        </div>
-        <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary text-sm">
-          Auf Google bewerten
-          <ArrowUpRight class="h-4 w-4" />
-        </a>
-      </div>
-
-      <p class="mt-5 text-xs text-ink-500">
-        Operator-TODO: Sobald Google Place-ID hinterlegt ist, Reviews live aus der Place Details API ziehen.
-      </p>
     </div>
   </section>
 
-  <!-- ═══ STANDORT ═══ -->
-  <section class="bg-white py-24 lg:py-32">
-    <div class="container-prose">
+  <!-- ═══════════ STANDORT ═══════════ -->
+  <section class="bg-white py-24 lg:py-32 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-2 right-4 lg:right-12 display-num pointer-events-none">10</span>
+    <div class="container-prose relative">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 reveal">
           <span class="eyebrow">Standort</span>
           <h2 class="mt-7 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-balance leading-[1.1]">
             Bornmoor 1.<br/>Hamburg-Stellingen.
           </h2>
           <p class="lead mt-7">
-            Auf dem Gelände des Autohofs Stellingen - direkt erreichbar mit Auto, S-Bahn S3/S21 und Bus.
+            Auf dem Gelände des Autohofs Stellingen - direkt erreichbar.
           </p>
           <div class="mt-10 space-y-5">
-            <div class="flex items-start gap-4">
-              <MapPin class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
-              <div>
-                <p class="text-base font-medium text-ink">{site.address.street}</p>
-                <p class="text-sm text-ink-500">{site.address.zip} {site.address.city}</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <Phone class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
-              <div>
-                <a href={site.phone.mainTel} class="block text-base font-medium text-ink hover:text-krzred transition-colors">
-                  {site.phone.main}
-                </a>
-                <a href={site.phone.mobileTel} class="block text-sm text-ink-500 hover:text-krzred transition-colors">
-                  Mobil: {site.phone.mobile}
-                </a>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <Mail class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
-              <a href={site.emailHref} class="text-base font-medium text-ink hover:text-krzred transition-colors">
-                {site.email}
-              </a>
-            </div>
-            <div class="flex items-start gap-4">
-              <Clock class="h-5 w-5 text-krzred shrink-0 mt-0.5" />
-              <ul class="text-sm space-y-1.5">
-                {site.hours.map((h) => (
-                  <li class="flex gap-3">
-                    <span class="text-ink font-medium w-32">{h.day}</span>
-                    <span class="text-ink-500">{h.time}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div class="flex items-start gap-4"><MapPin class="h-5 w-5 text-krzred shrink-0 mt-0.5" /><div><p class="text-base font-medium text-ink">{site.address.street}</p><p class="text-sm text-ink-500">{site.address.zip} {site.address.city}</p></div></div>
+            <div class="flex items-start gap-4"><Phone class="h-5 w-5 text-krzred shrink-0 mt-0.5" /><div><a href={site.phone.mainTel} class="block text-base font-medium text-ink hover:text-krzred transition-colors">{site.phone.main}</a><a href={site.phone.mobileTel} class="block text-sm text-ink-500 hover:text-krzred transition-colors">Mobil: {site.phone.mobile}</a></div></div>
+            <div class="flex items-start gap-4"><Mail class="h-5 w-5 text-krzred shrink-0 mt-0.5" /><a href={site.emailHref} class="text-base font-medium text-ink hover:text-krzred transition-colors">{site.email}</a></div>
+            <div class="flex items-start gap-4"><Clock class="h-5 w-5 text-krzred shrink-0 mt-0.5" /><ul class="text-sm space-y-1.5">{site.hours.map((h) => (<li class="flex gap-3"><span class="text-ink font-medium w-32">{h.day}</span><span class="text-ink-500">{h.time}</span></li>))}</ul></div>
           </div>
           <div class="mt-10 flex flex-wrap gap-3">
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary">
-              <MessageCircle class="h-4 w-4" />
-              WhatsApp
-            </a>
-            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary">
-              <MapPin class="h-4 w-4" />
-              Route planen
-            </a>
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-primary"><MessageCircle class="h-4 w-4" />WhatsApp</a>
+            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" class="btn-secondary"><MapPin class="h-4 w-4" />Route planen</a>
           </div>
         </div>
-
-        <div class="lg:col-span-7">
-          <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden rounded-2xl bg-paper-200">
-            <iframe
-              src={site.mapsEmbed}
-              width="100%"
-              height="100%"
-              style="border:0; min-height: 28rem;"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Standort KRZ auf Google Maps"
-            ></iframe>
+        <div class="lg:col-span-7 reveal-scale">
+          <div class="aspect-[5/4] lg:aspect-auto lg:h-full overflow-hidden rounded-3xl bg-paper-200">
+            <iframe src={site.mapsEmbed} width="100%" height="100%" style="border:0; min-height: 28rem;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Standort KRZ"></iframe>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FINAL CTA ═══ -->
   <CtaBand />
 </BaseLayout>

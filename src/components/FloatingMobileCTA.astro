@@ -1,0 +1,36 @@
+---
+import { MessageCircle, Phone } from "@lucide/astro";
+import { site } from "../data/site";
+---
+
+<div id="floating-mobile-cta" class="floating-mobile-cta is-hidden">
+  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="fmc-primary">
+    <MessageCircle class="h-4 w-4" />
+    WhatsApp schreiben
+  </a>
+  <a href={site.phone.mainTel} class="fmc-secondary" aria-label={`Anrufen ${site.phone.main}`}>
+    <Phone class="h-4 w-4" />
+  </a>
+</div>
+
+<script>
+  const el = document.getElementById("floating-mobile-cta");
+  if (el) {
+    let lastY = 0;
+    let shown = false;
+    const update = () => {
+      const y = window.scrollY;
+      const past = y > window.innerHeight * 0.55;
+      const movingDown = y > lastY;
+      if (past && movingDown && !shown) {
+        el.classList.remove("is-hidden");
+        shown = true;
+      } else if (!past && shown) {
+        el.classList.add("is-hidden");
+        shown = false;
+      }
+      lastY = y;
+    };
+    document.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+  }
+</script>

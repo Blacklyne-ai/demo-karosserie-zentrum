@@ -1,0 +1,83 @@
+---
+---
+
+<script is:inline>
+  (function() {
+    const init = function() {
+      // Scroll Reveal
+      const revealEls = document.querySelectorAll(".reveal, .reveal-fade, .reveal-scale");
+      const inViewOnLoad = function(el) {
+        const r = el.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+      };
+      if ("IntersectionObserver" in window && revealEls.length) {
+        // Immediately reveal anything already in viewport (avoid blank initial paint)
+        revealEls.forEach(function(el) { if (inViewOnLoad(el)) el.classList.add("in-view"); });
+        const io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in-view");
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+        revealEls.forEach(function(el) { if (!el.classList.contains("in-view")) io.observe(el); });
+      } else {
+        revealEls.forEach(function(el) { el.classList.add("in-view"); });
+      }
+
+      // Count Up Stats
+      const counters = document.querySelectorAll(".stat-count");
+      const animateCount = function(el) {
+        const target = parseFloat(el.dataset.target || "0");
+        const suffix = el.dataset.suffix || "";
+        const decimals = parseInt(el.dataset.decimals || "0", 10);
+        const duration = 1400;
+        const start = performance.now();
+        const tick = function(now) {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const value = target * eased;
+          el.textContent = (decimals ? value.toFixed(decimals) : Math.round(value).toString()) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = (decimals ? target.toFixed(decimals) : target.toString()) + suffix;
+        };
+        requestAnimationFrame(tick);
+      };
+      if ("IntersectionObserver" in window && counters.length) {
+        const co = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              animateCount(e.target);
+              co.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.45 });
+        counters.forEach(function(el) { co.observe(el); });
+      }
+
+      // Before/After Slider
+      const bas = document.querySelectorAll(".ba-slider");
+      bas.forEach(function(slider) {
+        let dragging = false;
+        const set = function(px) {
+          const rect = slider.getBoundingClientRect();
+          const x = Math.max(0, Math.min(rect.width, px - rect.left));
+          const pct = (x / rect.width) * 100;
+          slider.style.setProperty("--ba-pos", pct + "%");
+        };
+        slider.addEventListener("mousedown", function(e) { dragging = true; set(e.clientX); });
+        slider.addEventListener("touchstart", function(e) { dragging = true; set(e.touches[0].clientX); }, { passive: true });
+        window.addEventListener("mousemove", function(e) { if (dragging) set(e.clientX); });
+        window.addEventListener("touchmove", function(e) { if (dragging) set(e.touches[0].clientX); }, { passive: true });
+        window.addEventListener("mouseup", function() { dragging = false; });
+        window.addEventListener("touchend", function() { dragging = false; });
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+</script>

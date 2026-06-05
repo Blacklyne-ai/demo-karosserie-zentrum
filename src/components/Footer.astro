@@ -1,24 +1,24 @@
 ---
-import { Phone, Mail, MapPin, Clock } from "@lucide/astro";
+import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowUpRight } from "@lucide/astro";
 import Icons from "./Icons.astro";
 import { site, navServices } from "../data/site";
 const year = 2026;
 ---
 
-<footer class="section-dark">
-  <div class="container-prose py-16 lg:py-20">
-    <div class="grid gap-12 lg:grid-cols-4">
-      <div class="lg:col-span-2 max-w-md">
+<footer class="bg-anthracite-900 text-white">
+  <div class="container-prose py-20 lg:py-24">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5 max-w-md">
         <a href="/" class="inline-block">
           <img
             src="/logo.jpg"
             alt="KRZ Karosserie Reparatur Zentrum"
-            class="h-12 w-auto bg-white p-1.5"
-            width="160"
-            height="48"
+            class="h-14 w-auto bg-white p-2 rounded-lg"
+            width="180"
+            height="56"
           />
         </a>
-        <p class="mt-6 text-sm leading-relaxed text-ink-400">
+        <p class="mt-7 text-[15px] leading-relaxed text-paper-300">
           Karosserie-Fachbetrieb in Hamburg-Stellingen. Karosseriearbeiten, Lackierung,
           Smart-Repair, Oldtimer-Restaurierung und Unfallservice unter einem Dach.
         </p>
@@ -28,7 +28,7 @@ const year = 2026;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-white hover:text-white transition-colors"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:border-krzred hover:bg-krzred transition-all"
           >
             <Icons name="facebook" class="h-4 w-4" />
           </a>
@@ -37,7 +37,7 @@ const year = 2026;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-white hover:text-white transition-colors"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:border-krzred hover:bg-krzred transition-all"
           >
             <Icons name="instagram" class="h-4 w-4" />
           </a>
@@ -46,57 +46,69 @@ const year = 2026;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            class="flex h-10 w-10 items-center justify-center border border-ink-400/40 text-ink-400 hover:border-white hover:text-white transition-colors"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:border-krzred hover:bg-krzred transition-all"
           >
             <Icons name="whatsapp" class="h-4 w-4" />
           </a>
         </div>
       </div>
 
-      <div>
-        <h4 class="text-xs font-medium uppercase tracking-[0.2em] text-white">Leistungen</h4>
-        <ul class="mt-5 space-y-2.5">
+      <div class="lg:col-span-3">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white mb-6">Leistungen</h4>
+        <ul class="space-y-3">
           {navServices.slice(0, 6).map((s) => (
             <li>
-              <a href={s.href} class="text-sm text-ink-400 hover:text-white transition-colors">
+              <a href={s.href} class="text-sm text-paper-300 hover:text-white transition-colors inline-flex items-center gap-1.5 group">
                 {s.label}
+                <ArrowUpRight class="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </a>
             </li>
           ))}
         </ul>
       </div>
 
-      <div>
-        <h4 class="text-xs font-medium uppercase tracking-[0.2em] text-white">Kontakt</h4>
-        <ul class="mt-5 space-y-3.5 text-sm text-ink-400">
-          <li class="flex items-start gap-2.5">
-            <MapPin class="h-4 w-4 mt-0.5 shrink-0" />
-            <span>{site.address.street}<br/>{site.address.zip} {site.address.city}</span>
+      <div class="lg:col-span-4">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-white mb-6">Kontakt</h4>
+        <ul class="space-y-4 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 shrink-0 mt-0.5">
+              <MapPin class="h-4 w-4 text-krzred" />
+            </span>
+            <div class="text-paper-200 leading-relaxed">
+              <span class="text-white font-medium">{site.address.street}</span><br/>
+              {site.address.zip} {site.address.city}
+            </div>
           </li>
-          <li class="flex items-start gap-2.5">
-            <Phone class="h-4 w-4 mt-0.5 shrink-0" />
-            <a href={site.phone.mainTel} class="hover:text-white">{site.phone.main}</a>
+          <li class="flex items-start gap-3">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 shrink-0 mt-0.5">
+              <Phone class="h-4 w-4 text-krzred" />
+            </span>
+            <a href={site.phone.mainTel} class="text-white font-medium hover:text-krzred transition-colors">{site.phone.main}</a>
           </li>
-          <li class="flex items-start gap-2.5">
-            <Mail class="h-4 w-4 mt-0.5 shrink-0" />
-            <a href={site.emailHref} class="hover:text-white break-all">{site.email}</a>
+          <li class="flex items-start gap-3">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 shrink-0 mt-0.5">
+              <Mail class="h-4 w-4 text-krzred" />
+            </span>
+            <a href={site.emailHref} class="text-white font-medium hover:text-krzred transition-colors break-all">{site.email}</a>
           </li>
-          <li class="flex items-start gap-2.5">
-            <Clock class="h-4 w-4 mt-0.5 shrink-0" />
-            <span>{site.hoursShort}</span>
+          <li class="flex items-start gap-3">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 shrink-0 mt-0.5">
+              <Clock class="h-4 w-4 text-krzred" />
+            </span>
+            <span class="text-paper-200">{site.hoursShort}</span>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="mt-14 flex flex-col gap-4 border-t border-ink-400/15 pt-6 lg:flex-row lg:items-center lg:justify-between">
-      <p class="text-xs text-ink-400">
+    <div class="mt-16 flex flex-col gap-4 border-t border-white/15 pt-8 lg:flex-row lg:items-center lg:justify-between">
+      <p class="text-xs text-paper-300">
         © {year} {site.legal}. Alle Rechte vorbehalten.
       </p>
-      <nav class="flex flex-wrap items-center gap-6 text-xs text-ink-400">
-        <a href="/kontakt/" class="hover:text-white">Kontakt</a>
-        <a href="/impressum/" class="hover:text-white">Impressum</a>
-        <a href="/datenschutz/" class="hover:text-white">Datenschutz</a>
+      <nav class="flex flex-wrap items-center gap-6 text-xs">
+        <a href="/kontakt/" class="text-paper-300 hover:text-white transition-colors">Kontakt</a>
+        <a href="/impressum/" class="text-paper-300 hover:text-white transition-colors">Impressum</a>
+        <a href="/datenschutz/" class="text-paper-300 hover:text-white transition-colors">Datenschutz</a>
       </nav>
     </div>
   </div>

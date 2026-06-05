@@ -646,12 +646,12 @@
 
   /* ═══ Subtle warm gradient for hero/wow sections ═══ */
   .mesh-bg {
-    background:
+    background-image:
       radial-gradient(ellipse at 15% 0%, rgba(200, 16, 46, 0.04) 0%, transparent 45%),
       radial-gradient(ellipse at 90% 100%, rgba(15, 15, 15, 0.03) 0%, transparent 50%);
   }
   .mesh-bg-dark {
-    background:
+    background-image:
       radial-gradient(at 25% 40%, rgba(200, 16, 46, 0.18) 0px, transparent 55%),
       radial-gradient(at 80% 80%, rgba(200, 16, 46, 0.10) 0px, transparent 50%);
   }

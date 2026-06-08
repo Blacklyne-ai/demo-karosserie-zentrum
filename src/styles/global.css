@@ -24,6 +24,10 @@
     font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     line-height: 1.55;
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
   }
   h1,
   h2,
@@ -877,13 +881,17 @@
   .display-num {
     font-family: "Oswald", "Roboto", sans-serif;
     font-weight: 700;
-    font-size: clamp(4rem, 9vw, 7rem);
+    font-size: clamp(3rem, 8vw, 7rem);
     line-height: 0.9;
     letter-spacing: -0.04em;
     color: rgba(15, 15, 15, 0.06);
     -webkit-text-stroke: 1px rgba(15, 15, 15, 0.14);
     user-select: none;
     pointer-events: none;
+    display: none;
+  }
+  @media (min-width: 640px) {
+    .display-num { display: inline-block; }
   }
   .section-dark .display-num {
     color: rgba(255, 255, 255, 0.04);
